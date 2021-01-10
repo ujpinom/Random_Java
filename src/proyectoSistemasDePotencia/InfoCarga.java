@@ -54,7 +54,7 @@ public class InfoCarga extends GridPane {
 		cbo1.getItems().addAll(orientaciones);
 		vb.getChildren().addAll(z1l,z1t,z2l,z2t,orientacion,cbo1);
 		this.add(vb,0 , 1);
-		infolinea.setText("INFORMACIÓN DEL GENERADOR "+ carga.getNombreCarga());
+		infolinea.setText("INFORMACIÓN DE LA CARGA "+ carga.getNombreCarga());
 		infolinea.setStroke(Color.RED);
 		
 		z1t.setText(""+carga.getPotenciaActiva());

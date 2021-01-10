@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 
@@ -14,7 +16,7 @@ public class DibujarCarga {
 	
 	
 	
-	static List<Line> dibujarCargaBanco(Object objecto,String tipo){
+	static List<Node> dibujarCargaBanco(Object objecto,String tipo){
 
 		
 			if(tipo.equals("C")) {
@@ -33,9 +35,9 @@ public class DibujarCarga {
 	}
 	
 	
-	static List<Line> dibujarBanco(Bancos banco){
+	static List<Node> dibujarBanco(Bancos banco){
 		
-		List<Line> lineas= new ArrayList<>();
+		List<Node> lineas= new ArrayList<>();
 		
 		if(banco.getOrientacion().equals(Bancos.LEFT)) {
 			double x1=banco.getBarra().getCoordenadasBanco().getX();
@@ -51,23 +53,103 @@ public class DibujarCarga {
 			double yMedio=(y1+y2)/2;
 			banco.setPuntoMedio(new Point2D(xMedio,yMedio));
 			
+			Circle c1= new Circle();
+			c1.setRadius(5);
+			c1.setCenterX(x1);
+			c1.setCenterY(y1);
+			c1.setFill(Color.RED);
 			Line line=new Line(lineacarga.getEndX(),lineacarga.getEndY()+10,lineacarga.getEndX(),lineacarga.getEndY()-10);
 			line.setStrokeWidth(4);
 			lineacarga.setStrokeWidth(4);
-			lineas.add(line);lineas.add(lineacarga);
+			lineas.add(line);lineas.add(lineacarga);lineas.add(c1);
 		
 		}
 		
+		else if(banco.getOrientacion().equals(Bancos.RIGHT)) {
+			double x1=banco.getBarra().getCoordenadasBanco().getX();
+			double y1=banco.getBarra().getCoordenadasBanco().getY();
+			double x2=banco.getBarra().getCoordenadasBanco().getX()+50;
+			double y2=banco.getBarra().getCoordenadasBanco().getY();
+
+			
+			lineacarga=new Line(x1,y1,
+					x2,y2);
+			
+			double xMedio=(x1+x2)/2;
+			double yMedio=(y1+y2)/2;
+			banco.setPuntoMedio(new Point2D(xMedio,yMedio));
+			
+			Circle c1= new Circle();
+			c1.setRadius(5);
+			c1.setCenterX(x1);
+			c1.setCenterY(y1);
+			c1.setFill(Color.RED);
+			Line line=new Line(lineacarga.getEndX(),lineacarga.getEndY()+10,lineacarga.getEndX(),lineacarga.getEndY()-10);
+			line.setStrokeWidth(4);
+			lineacarga.setStrokeWidth(4);
+			lineas.add(line);lineas.add(lineacarga);lineas.add(c1);
+		}
 		
+		
+		else if(banco.getOrientacion().equals(Bancos.ABAJO)) {
+			double x1=banco.getBarra().getCoordenadasBanco().getX();
+			double y1=banco.getBarra().getCoordenadasBanco().getY();
+			double x2=banco.getBarra().getCoordenadasBanco().getX();
+			double y2=banco.getBarra().getCoordenadasBanco().getY()+50;
+
+			
+			lineacarga=new Line(x1,y1,
+					x2,y2);
+			
+			double xMedio=(x1+x2)/2;
+			double yMedio=(y1+y2)/2;
+			banco.setPuntoMedio(new Point2D(xMedio,yMedio));
+			
+			Circle c1= new Circle();
+			c1.setRadius(5);
+			c1.setCenterX(x1);
+			c1.setCenterY(y1);
+			c1.setFill(Color.RED);
+			Line line=new Line(x2-10,y2,x2+10,y2);
+			line.setStrokeWidth(4);
+			lineacarga.setStrokeWidth(4);
+			lineas.add(line);lineas.add(lineacarga);lineas.add(c1);
+		}
+		else if(banco.getOrientacion().equals(Bancos.ARRIBA)) {
+			double x1=banco.getBarra().getCoordenadasBanco().getX();
+			double y1=banco.getBarra().getCoordenadasBanco().getY();
+			double x2=banco.getBarra().getCoordenadasBanco().getX();
+			double y2=banco.getBarra().getCoordenadasBanco().getY()-50;
+
+			
+			lineacarga=new Line(x1,y1,
+					x2,y2);
+			
+			double xMedio=(x1+x2)/2;
+			double yMedio=(y1+y2)/2;
+			banco.setPuntoMedio(new Point2D(xMedio,yMedio));
+			
+			Circle c1= new Circle();
+			c1.setRadius(5);
+			c1.setCenterX(x1);
+			c1.setCenterY(y1);
+			c1.setFill(Color.RED);
+			Line line=new Line(x2-10,y2,x2+10,y2);
+			line.setStrokeWidth(4);
+			lineacarga.setStrokeWidth(4);
+			lineas.add(line);lineas.add(lineacarga);lineas.add(c1);
+		}
+		
+	/////Hola perro
 		
 		
 		return lineas;
 		
 	}
 	
-	static List<Line> dibujarCarga(Carga banco){
+	static List<Node> dibujarCarga(Carga banco){
 		
-		List<Line> lineas=new ArrayList<Line>();
+		List<Node> lineas=new ArrayList<Node>();
 		
 		if(banco.getOrientacion().equals(Carga.RIGHT)) {
 			double x1=banco.getBarra().getCoordenadasCarga().getX();
@@ -81,6 +163,11 @@ public class DibujarCarga {
 			double xMedio=(x1+x2)/2;
 			double yMedio=(y1+y2)/2;
 			banco.setPuntoMedio(new Point2D(xMedio,yMedio));
+			Circle c1= new Circle();
+			c1.setRadius(5);
+			c1.setCenterX(x1);
+			c1.setCenterY(y1);
+			c1.setFill(Color.RED);
 			
 			double pendiente=((((double) y1) - (double) y2))
 				      / (((double) x1) - (((double) x2)));
@@ -103,7 +190,7 @@ public class DibujarCarga {
 			
 			lineacarga.setStrokeWidth(4);
 			
-			lineas.add(lineacarga);lineas.add(line1);lineas.add(line2);
+			lineas.add(lineacarga);lineas.add(line1);lineas.add(line2);lineas.add(c1);
 			
 		}
 		
@@ -120,7 +207,11 @@ public class DibujarCarga {
 			double xMedio=(x1+x2)/2;
 			double yMedio=(y1+y2)/2;
 			banco.setPuntoMedio(new Point2D(xMedio,yMedio));
-			
+			Circle c1= new Circle();
+			c1.setRadius(5);
+			c1.setCenterX(x1);
+			c1.setCenterY(y1);
+			c1.setFill(Color.RED);
 			double pendiente=((((double) y1) - (double) y2))
 				      / (((double) x1) - (((double) x2)));
 			
@@ -142,7 +233,7 @@ public class DibujarCarga {
 			
 			lineacarga.setStrokeWidth(4);
 			
-			lineas.add(lineacarga);lineas.add(line1);lineas.add(line2);
+			lineas.add(lineacarga);lineas.add(line1);lineas.add(line2);lineas.add(c1);
 			
 			
 		}
@@ -159,7 +250,11 @@ public class DibujarCarga {
 			double xMedio=(x1+x2)/2;
 			double yMedio=(y1+y2)/2;
 			banco.setPuntoMedio(new Point2D(xMedio,yMedio));
-			
+			Circle c1= new Circle();
+			c1.setRadius(5);
+			c1.setCenterX(x1);
+			c1.setCenterY(y1);
+			c1.setFill(Color.RED);
 			double pendiente=((((double) y1) - (double) y2))
 				      / (((double) x1) - (((double) x2)));
 			
@@ -181,7 +276,7 @@ public class DibujarCarga {
 			
 			lineacarga.setStrokeWidth(4);
 			
-			lineas.add(lineacarga);lineas.add(line1);lineas.add(line2);
+			lineas.add(lineacarga);lineas.add(line1);lineas.add(line2);lineas.add(c1);
 			
 			
 			
@@ -199,7 +294,11 @@ public class DibujarCarga {
 			double xMedio=(x1+x2)/2;
 			double yMedio=(y1+y2)/2;
 			banco.setPuntoMedio(new Point2D(xMedio,yMedio));
-			
+			Circle c1= new Circle();
+			c1.setRadius(5);
+			c1.setCenterX(x1);
+			c1.setCenterY(y1);
+			c1.setFill(Color.RED);
 			double pendiente=((((double) y1) - (double) y2))
 				      / (((double) x1) - (((double) x2)));
 			
@@ -222,7 +321,7 @@ public class DibujarCarga {
 			lineacarga.setStrokeWidth(4);
 		
 			
-			lineas.add(lineacarga);lineas.add(line1);lineas.add(line2);
+			lineas.add(lineacarga);lineas.add(line1);lineas.add(line2);lineas.add(c1);
 			
 		}
 		

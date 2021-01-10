@@ -117,7 +117,6 @@ public class InfoGeneradores extends GridPane {
 		     stage.close();
 		});
 		
-		
 	}
 	
 	public boolean verificarEntrada(String entrada) {

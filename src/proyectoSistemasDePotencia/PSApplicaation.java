@@ -487,10 +487,8 @@ public class PSApplicaation extends Application {
 					
 					else if(tipoElemento instanceof Line ) {
 						boolean bandera=false;
-						boolean bandera1=false;
-						
-						double inicioX=((Line)tipoElemento).getStartX();
-						double finalX=((Line)tipoElemento).getEndX();
+						boolean bandera1=false;boolean bandera2=false;
+					
 						
 						for(int i=0;i<conexiones.size();i++) {
 							
@@ -598,6 +596,7 @@ public class PSApplicaation extends Application {
 									
 									display.setText("Elemento:   "+cargas.get(i).getNombreCarga()+"\nPotencia Activa [MW]: "+cargas.get(i).getPotenciaActiva()+"\nPotencia Reactiva [MVars]: "+cargas.get(i).getPotenciaReactiva());
 									
+									bandera2=true;
 									if(e.isAltDown()) {
 										InfoCarga infoCarga= new InfoCarga(cargas.get(i));
 										Scene dad= new Scene(infoCarga);
@@ -613,6 +612,34 @@ public class PSApplicaation extends Application {
 								
 								
 							}
+							
+						}
+						
+						if(!bandera && !bandera1 && !bandera2) {
+							
+							for(int i=0;i<bancos.size();i++) {
+								Point2D pntmedio=bancos.get(i).getPuntoMedio();
+								
+								if(((Line)tipoElemento).contains(pntmedio)) {
+									
+									display.setText("Elemento:   "+bancos.get(i).getNombreCarga()+"\nPotencia Reactiva [MVars]: "+bancos.get(i).getPotenciaReactiva());
+									
+									if(e.isAltDown()) {
+										
+										infoBanco infoBanco= new infoBanco(bancos.get(i));
+										Scene dad= new Scene(infoBanco);
+										Stage sta= new Stage();
+										sta.setScene(dad);
+										sta.setTitle("INFORMACIÓN DEl BANCO");
+										sta.setResizable(false);
+										sta.initModality(Modality.APPLICATION_MODAL);
+										sta.showAndWait();
+										repaint();
+										
+									}
+								}
+							}
+							
 							
 						}
 					}
@@ -759,6 +786,7 @@ public class PSApplicaation extends Application {
 					removeGeneradorAdyacente(b);
 					removeAdjacentEdges(b);
 					removeCargaAdyacente(b);
+					removerBancoAdyacente(b);
 					repaint();
 					
 					
@@ -766,6 +794,7 @@ public class PSApplicaation extends Application {
 						conexiones1.get(i).setConexionPrimaria("YN-"+conexiones1.get(i).getBarra1().getNombreBarra());
 						conexiones1.get(i).setConexionSecundaria("YN-"+conexiones1.get(i).getBarra2().getNombreBarra());
 					}
+					
 				
 					return;
 					
@@ -920,7 +949,15 @@ public class PSApplicaation extends Application {
 				         repaint();
 				     } 
 					 
-					 if(tipoElemento instanceof Line) {
+					 if(tipoElemento instanceof Circle) {
+						 
+						 double xcenter=((Circle)tipoElemento).getCenterX();
+						 double ycenter=((Circle)tipoElemento).getCenterY();
+
+						 
+						 
+						 boolean bandera1=false;
+						 
 //						 moveText=true;
 //						System.out.println('s');
 //						((Text)tipoElemento).setX(x);
@@ -928,17 +965,43 @@ public class PSApplicaation extends Application {
 //						repaint();
 						 for (int i=0;i<cargas.size();i++) {
 							 
-							 Point2D pmedio=cargas.get(i).getPuntoMedio();
+							 double xcarga=cargas.get(i).getBarra().getCoordenadasCarga().getX();
+							 double ycarga=cargas.get(i).getBarra().getCoordenadasCarga().getY();
 							 
-							 if(((Line)tipoElemento).contains(pmedio)) {
-								 Barras b=cargas.get(i).getBarra();
-								 b.setCoordenadasCarga(new Point2D(x,y));
+							 if(xcenter==xcarga && ycenter==ycarga) {
 								 
+								 ((Circle)tipoElemento).setCenterX(x);
+								 ((Circle)tipoElemento).setCenterY(y);
+								 bandera1=true;
+								 Barras b=cargas.get(i).getBarra();
+								 b.setCoordenadasCarga(new Point2D(((Circle)tipoElemento).getCenterX(),((Circle)tipoElemento).getCenterY()));
 								 repaint();
-
+								 break;
+								 
 							 }
+							 
+							 
 						 }
 						 
+							 
+							 for (int i=0;i<bancos.size();i++) {
+								 
+								 double xcarga=bancos.get(i).getBarra().getCoordenadasBanco().getX();
+								 double ycarga=bancos.get(i).getBarra().getCoordenadasBanco().getY();
+								 
+								 if(xcenter==xcarga && ycenter==ycarga) {
+									 
+									 ((Circle)tipoElemento).setCenterX(x);
+									 ((Circle)tipoElemento).setCenterY(y);
+									 bandera1=true;
+									 Barras b=bancos.get(i).getBarra();
+									 b.setCoordenadasBanco(new Point2D(((Circle)tipoElemento).getCenterX(),((Circle)tipoElemento).getCenterY()));
+									 repaint();
+									 break;
+									 
+								 }
+								 
+							 }
 //						
 					 }
 					
@@ -988,6 +1051,18 @@ public class PSApplicaation extends Application {
 				}
 			}
 			
+			
+		}
+		
+		
+		public void removerBancoAdyacente(Barras b) {
+			
+			
+			for(int i=0;i<bancos.size();i++) {
+				if(bancos.get(i).getBarra()==b) {
+					bancos.remove(i--);
+				}
+			}
 			
 		}
 		
