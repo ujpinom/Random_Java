@@ -413,7 +413,7 @@ public class PSApplicaation extends Application {
 				
 				if(!corBanco.contains(b.getXbarra())) {
 					b.setCoordenadasBanco(new Point2D(e.getX(),e.getY()));
-					bancos.add(new Bancos(new Point2D(e.getX(),e.getY()),b,nombreCarga));
+					bancos.add(new Bancos(new Point2D(e.getX(),e.getY()),b,nombreBanco));
 					corBanco.add(b.getXbarra());
 					repaint();
 					return;

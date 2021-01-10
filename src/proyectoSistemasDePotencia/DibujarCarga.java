@@ -37,6 +37,29 @@ public class DibujarCarga {
 		
 		List<Line> lineas= new ArrayList<>();
 		
+		if(banco.getOrientacion().equals(Bancos.LEFT)) {
+			double x1=banco.getBarra().getCoordenadasBanco().getX();
+			double y1=banco.getBarra().getCoordenadasBanco().getY();
+			double x2=banco.getBarra().getCoordenadasBanco().getX()-50;
+			double y2=banco.getBarra().getCoordenadasBanco().getY();
+
+			
+			lineacarga=new Line(x1,y1,
+					x2,y2);
+			
+			double xMedio=(x1+x2)/2;
+			double yMedio=(y1+y2)/2;
+			banco.setPuntoMedio(new Point2D(xMedio,yMedio));
+			
+			Line line=new Line(lineacarga.getEndX(),lineacarga.getEndY()+10,lineacarga.getEndX(),lineacarga.getEndY()-10);
+			line.setStrokeWidth(4);
+			lineacarga.setStrokeWidth(4);
+			lineas.add(line);lineas.add(lineacarga);
+		
+		}
+		
+		
+		
 		
 		return lineas;
 		
@@ -266,7 +289,7 @@ public class DibujarCarga {
 			else if(banco.getOrientacion().equals(Carga.LEFT)) {
 				nombreC= new Text(banco.getNombreCarga());
 				nombreC.setFill(Color.BLACK);
-				nombreC.setX(lineacarga.getEndX()-15);
+				nombreC.setX(lineacarga.getEndX()-30);
 				nombreC.setY(lineacarga.getEndY());
 				
 			}

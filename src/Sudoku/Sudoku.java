@@ -1,7 +1,7 @@
 package Sudoku;
 import java.security.*;
 import java.util.*;
-public class Sudoku {
+public class Sudoku implements Cloneable{
 
 	private static ArrayList<int [][]> soluciones=new ArrayList<>();
 	private static int contador;
@@ -16,6 +16,9 @@ public class Sudoku {
 									{3, 0, 0, 0, 5, 0, 0, 0, 9},
 									{0, 0, 0, 2, 0, 0, 0, 0, 0},
 									{0, 4, 0, 0, 0, 0, 0, 7, 0}};
+	
+	
+	private static int [][] temp= sudoku.clone();
 	
 	
 
