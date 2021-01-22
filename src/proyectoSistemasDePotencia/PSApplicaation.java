@@ -1,11 +1,9 @@
 package proyectoSistemasDePotencia;
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
-
 import javax.swing.JOptionPane;
-
 import grafos.Edges;
 import grafos.MyGraph;
 import javafx.geometry.Insets;
@@ -26,8 +24,6 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -38,11 +34,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.QuadCurve;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.CubicCurve;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -63,7 +57,7 @@ public class PSApplicaation extends Application {
 	private RadioButton generador= new RadioButton("Generador");
 	private RadioButton barra= new RadioButton("Barra");
 	private Button instru= new Button("Instrucciones",new ImageView("proyectoSistemasDePotencia/centerAlignment.png"));
-	private Button undo= new Button("Limpiar",new ImageView("proyectoSistemasDePotencia/44426.png"));
+	private Button undo= new Button("Limpiar");
 	private Button ejecutar= new Button("Ejecutar",new ImageView("proyectoSistemasDePotencia/right.gif"));
 	private Label tElementos= new Label("ELEMENTOS");
 	private TextArea display= new TextArea();
@@ -79,6 +73,7 @@ public class PSApplicaation extends Application {
 	private RadioButton flujoPotencia=new RadioButton("F.Potencia");
 	private RadioButton carga=new RadioButton("Carga");
 	private RadioButton banco= new RadioButton("Banco");
+	private Button undo1=new Button("Deshacer",new ImageView("proyectoSistemasDePotencia/44426.png"));
 	
 	public static void main(String[] args) {
 
@@ -134,8 +129,8 @@ public class PSApplicaation extends Application {
 		hBox1.setAlignment(Pos.CENTER);
 		hBox2.setAlignment(Pos.TOP_CENTER);
 		hBox3.setAlignment(Pos.CENTER);
-		vBox.getChildren().addAll(ejecutar,tElementos,linea,trafo,generador,barra,carga,banco,none,undo);
-		vBox.setMargin(tElementos, new Insets(5));
+		vBox.getChildren().addAll(ejecutar,tElementos,linea,trafo,generador,barra,carga,banco,none,undo1,undo);
+		VBox.setMargin(tElementos, new Insets(5));
 		hBox1.getChildren().addAll(instru);
 		hBox2.getChildren().addAll(display);
 		hBox3.getChildren().addAll(trifa,mono,bifasica,bifasicaTierra,flujoPotencia);
@@ -154,6 +149,7 @@ public class PSApplicaation extends Application {
 		linea.setOnAction(handler);trafo.setOnAction(handler);generador.setOnAction(handler);barra.setOnAction(handler);none.setOnAction(handler);
 		undo.setOnAction(handler);carga.setOnAction(handler);banco.setOnAction(handler);
 		ejecutar.setOnAction(handler);trifa.setOnAction(handler);mono.setOnAction(handler);bifasica.setOnAction(handler);bifasicaTierra.setOnAction(handler);flujoPotencia.setOnAction(handler);
+		undo1.setOnAction(handler);
 		
 
 	}
@@ -193,6 +189,10 @@ public class PSApplicaation extends Application {
 			if(a.getSource()==undo) {
 				
 				paneldibujo.limpiarArea();
+			}
+			
+			if(a.getSource()==undo1) {
+				paneldibujo.borrarUltimoElemento();
 			}
 			
 			if(trifa.isSelected()) {
@@ -286,13 +286,9 @@ public class PSApplicaation extends Application {
 		private WeightedGraph<Barras> grafo1;
 		private WeightedGraph<Barras> grafo2;
 		private WeightedGraph<Barras> grafo0;
-		private Ybarra creacionYbarra1;
-		private Ybarra  creacionYbarra2;
-		private Ybarra  creacionYbarra0;
 		private double impedanciaDeFalla;
 		private String tipoElementoFallado;
 		private ArrayList<Double> coorFalla= new ArrayList<>();
-		private double corrientePuntoFallado;
 		private boolean fallaEnLinea=false;
 		private Lineas lineaFallada;
 		private Barras barraFallada;
@@ -306,6 +302,7 @@ public class PSApplicaation extends Application {
 		private double angCorrientePuntoFallaFaseC;
 		private double largoBarra=70;
 		private double ancho=10;
+		private LinkedList<Object> objetosCreados= new LinkedList<>();   //Almacena todos los objectos creados para llevar un record de ellos;
 		
 		
 		public PSApplicaationView() {
@@ -330,6 +327,7 @@ public class PSApplicaation extends Application {
 					
 					Barras barra= new Barras(x,y,nombreBarra);
 					barras.add(barra);
+					objetosCreados.add(barra);
 					repaint();
 					return;
 				}
@@ -350,12 +348,14 @@ public class PSApplicaation extends Application {
 					if(conexiones.isEmpty()&&lselected) {
 						Lineas l= new Lineas(startB,b,1,1,1);
 						conexiones.add(l);
+						objetosCreados.add(l);
 						distanciasLineas.add(longitudLinea(b,startB));
 						
 					}
 					else if(conexiones.isEmpty()&&tselected) {
 						Transformador t= new Transformador(startB,b,1,1,1);
 						conexiones1.add(t);
+						objetosCreados.add(t);
 						distanciasLineas.add(longitudLinea(b,startB));
 					}
 					else {
@@ -365,11 +365,15 @@ public class PSApplicaation extends Application {
 						if(!distanciasLineas.contains(pe) && lselected) {
 							distanciasLineas.add(pe);
 							conexiones.add(new Lineas(startB,b,1,1,1));
+							objetosCreados.add(new Lineas(startB,b,1,1,1));
+							
 						}
 						
 						else if(!distanciasLineas.contains(pe) && tselected) {
 							distanciasLineas.add(pe);
 							conexiones1.add(new Transformador(startB,b,1,1,1));
+							objetosCreados.add(new Transformador(startB,b,1,1,1));
+
 						}
 					
 					}
@@ -388,6 +392,8 @@ public class PSApplicaation extends Application {
 						
 						b.setxCoorG(xCoorG);b.setyCoorG(yCoorG);
 						conexiongene.add(new Generadores(nombreGenerador,1,1,1,b));
+						objetosCreados.add(new Generadores(nombreGenerador,1,1,1,b));
+						
 						corGenerador.add(b.getXbarra());
 					}
 				
@@ -400,6 +406,7 @@ public class PSApplicaation extends Application {
 				if(!corCarga.contains(b.getXbarra())) {
 					b.setCoordenadasCarga(new Point2D(e.getX(),e.getY()));
 					cargas.add(new Carga(new Point2D(e.getX(),e.getY()),b,nombreCarga));
+					objetosCreados.add(new Carga(new Point2D(e.getX(),e.getY()),b,nombreCarga));
 					corCarga.add(b.getXbarra());
 					repaint();
 					return;
@@ -414,6 +421,7 @@ public class PSApplicaation extends Application {
 				if(!corBanco.contains(b.getXbarra())) {
 					b.setCoordenadasBanco(new Point2D(e.getX(),e.getY()));
 					bancos.add(new Bancos(new Point2D(e.getX(),e.getY()),b,nombreBanco));
+					objetosCreados.add(new Bancos(new Point2D(e.getX(),e.getY()),b,nombreBanco));
 					corBanco.add(b.getXbarra());
 					repaint();
 					return;
@@ -1217,13 +1225,77 @@ public class PSApplicaation extends Application {
 			conexiones1.clear();
 			conexiongene.clear();
 			barras.clear();
+			cargas.clear();
+			bancos.clear();
 			distanciasLineas.clear();
 			corGenerador.clear();
 			corCarga.clear();
+			corBanco.clear();
 			posBarra.clear();
 			repaint();
 			barras.add(new Barras("Tierra"));
 			tipoElementoFallado=null;
+		}
+		
+		public void borrarUltimoElemento() {
+			
+			Object elemento=objetosCreados.pollLast();
+			
+			
+			if(elemento instanceof Barras && elemento!=null) {
+				
+				Barras b=((Barras)elemento);
+				
+				barras.remove(b);
+				removeGeneradorAdyacente(b);
+				removeAdjacentEdges(b);
+				removeCargaAdyacente(b);
+				removerBancoAdyacente(b);
+				repaint();
+				
+				
+				for(int i=0;i<conexiones1.size();i++) {
+					conexiones1.get(i).setConexionPrimaria("YN-"+conexiones1.get(i).getBarra1().getNombreBarra());
+					conexiones1.get(i).setConexionSecundaria("YN-"+conexiones1.get(i).getBarra2().getNombreBarra());
+				}
+				
+			}
+			
+			else if(elemento instanceof Lineas && !(elemento instanceof Transformador)&& elemento!=null) {
+				
+				
+				conexiones.remove(conexiones.size()-1);
+				distanciasLineas.clear();
+				repaint();
+				
+			}
+			else if(elemento instanceof Generadores && elemento!=null) {
+				conexiongene.remove(conexiongene.size()-1);
+				corGenerador.clear();
+				repaint();
+				
+			}
+			
+			else if((elemento instanceof Transformador) &&(elemento instanceof Lineas) && elemento!=null) {
+				conexiones1.remove(conexiones1.size()-1);
+				distanciasLineas.clear();
+				repaint();
+			}
+			
+			else if(elemento instanceof Carga && elemento!=null) {
+				cargas.remove(cargas.size()-1);
+				corCarga.clear();
+				repaint();
+			}
+			
+			else if(elemento instanceof Bancos && elemento!=null) {
+				bancos.remove(bancos.size()-1);
+				corBanco.clear();
+				repaint();
+				
+			}
+			
+			
 		}
 		
 		public void dibujarBarra() {

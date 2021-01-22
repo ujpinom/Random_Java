@@ -1,6 +1,7 @@
 package proyectoSistemasDePotencia;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class pruebas {
 
@@ -75,13 +76,10 @@ public class pruebas {
 //			System.out.println();
 //		}
 		
+		LinkedList<Integer> perro= new LinkedList<>();
 		
 		ArrayList<Integer> asassd= new ArrayList<>();
 		asassd.add(1);asassd.add(2);asassd.add(3);asassd.add(4);asassd.add(4);
-		asassd.remove(2);
-		System.out.println(asassd);
-		asassd.add(2,5);
-		System.out.println(asassd);	
 		
 		
 	}

@@ -11,8 +11,8 @@ public class GenericStack <E>{
 		return array.size();
 	}
 	
-	public E obtenerElemento() {
-		return array.get(array.size()-1);
+	public E obtenerElemento(int i) {
+		return array.get(i);
 	}
 	
 	
