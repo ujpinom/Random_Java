@@ -7,10 +7,11 @@ public class AngulosDesfazamiento {
 	
 	
 	
-	public static void establecerAngulosDeDesfazamiento(ArrayList<Barras> barras,Barras barraFallada,String[] conexionesBarras,List<List<Edges>> adyacencias) {
-		
+	public static void establecerAngulosDeDesfazamiento(ArrayList<Barras> barras,Barras barraFallada,
+											String[] conexionesBarras,List<List<Edges>> adyacencias) {
 		
 		for(int i=0;i<barras.size();i++) {
+			
 			barras.get(i).setAnguloVoltajeSecuencia1(0);
 			barras.get(i).setAnguloVoltajeSecuencia2(0);
 			barras.get(i).setAnguloVoltajeSecuencia0(0);
@@ -59,11 +60,16 @@ public class AngulosDesfazamiento {
 						
 					}
 					
-					if((barras.get(u).getTipoConexionBarra().equals("O")&&barras.get(v).getTipoConexionBarra().equals("Y"))||(barras.get(u).getTipoConexionBarra().equals("O")&&barras.get(v).getTipoConexionBarra().equals("D"))
-							||((barras.get(u).getTipoConexionBarra().equals("Y")&&barras.get(v).getTipoConexionBarra().equals("O"))||(barras.get(u).getTipoConexionBarra().equals("D")&&barras.get(v).getTipoConexionBarra().equals("O")))) {
+					if((barras.get(u).getTipoConexionBarra().equals("O")&&barras.get(v).getTipoConexionBarra().equals("Y"))||
+							(barras.get(u).getTipoConexionBarra().equals("O")&&barras.get(v).getTipoConexionBarra().equals("D"))
+							||((barras.get(u).getTipoConexionBarra().equals("Y")&&barras.get(v).getTipoConexionBarra().equals("O"))||
+							(barras.get(u).getTipoConexionBarra().equals("D")&&barras.get(v).getTipoConexionBarra().equals("O")))) {
+
 						barras.get(u).setAnguloVoltajeSecuencia1(barras.get(v).getAnguloVoltajeSecuencia1());
 						barras.get(u).setAnguloVoltajeSecuencia2(barras.get(v).getAnguloVoltajeSecuencia2());
 						barras.get(u).setEstablecido(true);
+						
+						
 					}
 					
 					
@@ -97,13 +103,17 @@ public class AngulosDesfazamiento {
 							
 						}
 						
-						if((barras.get(v).getTipoConexionBarra().equals("O")&&barras.get(u).getTipoConexionBarra().equals("Y"))||(barras.get(v).getTipoConexionBarra().equals("O")&&barras.get(u).getTipoConexionBarra().equals("D"))
-								||((barras.get(v).getTipoConexionBarra().equals("Y")&&barras.get(u).getTipoConexionBarra().equals("O"))||(barras.get(v).getTipoConexionBarra().equals("D")&&barras.get(u).getTipoConexionBarra().equals("O")))) {
+						if((barras.get(v).getTipoConexionBarra().equals("O")&&barras.get(u).getTipoConexionBarra().equals("Y"))||
+								(barras.get(v).getTipoConexionBarra().equals("O")&&barras.get(u).getTipoConexionBarra().equals("D"))
+								||((barras.get(v).getTipoConexionBarra().equals("Y")&&barras.get(u).getTipoConexionBarra().equals("O"))||
+								(barras.get(v).getTipoConexionBarra().equals("D")&&barras.get(u).getTipoConexionBarra().equals("O")))) {
+							
+							
 							barras.get(v).setAnguloVoltajeSecuencia1(barras.get(u).getAnguloVoltajeSecuencia1());
 							barras.get(v).setAnguloVoltajeSecuencia2(barras.get(u).getAnguloVoltajeSecuencia2());
 							barras.get(v).setEstablecido(true);
+							
 						}
-						
 				}
 					
 			}
@@ -149,11 +159,15 @@ public class AngulosDesfazamiento {
 						
 					}
 					
-					if((barras.get(u).getTipoConexionBarra().equals("O")&&barras.get(v).getTipoConexionBarra().equals("Y"))||(barras.get(u).getTipoConexionBarra().equals("O")&&barras.get(v).getTipoConexionBarra().equals("D"))
-							||((barras.get(u).getTipoConexionBarra().equals("Y")&&barras.get(v).getTipoConexionBarra().equals("O"))||(barras.get(u).getTipoConexionBarra().equals("D")&&barras.get(v).getTipoConexionBarra().equals("O")))) {
+					if((barras.get(u).getTipoConexionBarra().equals("O")&&barras.get(v).getTipoConexionBarra().equals("Y"))||
+							(barras.get(u).getTipoConexionBarra().equals("O")&&barras.get(v).getTipoConexionBarra().equals("D"))
+							||((barras.get(u).getTipoConexionBarra().equals("Y")&&barras.get(v).getTipoConexionBarra().equals("O"))||
+							(barras.get(u).getTipoConexionBarra().equals("D")&&barras.get(v).getTipoConexionBarra().equals("O")))) {
+						
 						barras.get(u).setAnguloVoltajeSecuencia1(barras.get(v).getAnguloVoltajeSecuencia1());
 						barras.get(u).setAnguloVoltajeSecuencia2(barras.get(v).getAnguloVoltajeSecuencia2());
 						barras.get(u).setEstablecido(true);
+						
 					}
 					
 					
@@ -187,11 +201,16 @@ public class AngulosDesfazamiento {
 							
 						}
 						
-						if((barras.get(v).getTipoConexionBarra().equals("O")&&barras.get(u).getTipoConexionBarra().equals("Y"))||(barras.get(v).getTipoConexionBarra().equals("O")&&barras.get(u).getTipoConexionBarra().equals("D"))
-								||((barras.get(v).getTipoConexionBarra().equals("Y")&&barras.get(u).getTipoConexionBarra().equals("O"))||(barras.get(v).getTipoConexionBarra().equals("D")&&barras.get(u).getTipoConexionBarra().equals("O")))) {
+						if((barras.get(v).getTipoConexionBarra().equals("O")&&barras.get(u).getTipoConexionBarra().equals("Y"))||
+								(barras.get(v).getTipoConexionBarra().equals("O")&&barras.get(u).getTipoConexionBarra().equals("D"))
+								||((barras.get(v).getTipoConexionBarra().equals("Y")&&barras.get(u).getTipoConexionBarra().equals("O"))||
+										(barras.get(v).getTipoConexionBarra().equals("D")&&barras.get(u).getTipoConexionBarra().equals("O")))) 
+						{
+							
 							barras.get(v).setAnguloVoltajeSecuencia1(barras.get(u).getAnguloVoltajeSecuencia1());
 							barras.get(v).setAnguloVoltajeSecuencia2(barras.get(u).getAnguloVoltajeSecuencia2());
 							barras.get(v).setEstablecido(true);
+							
 						}
 						
 				}
@@ -199,9 +218,6 @@ public class AngulosDesfazamiento {
 				}
 			}
 		}
-		
-		
-		
 		
 	}
 

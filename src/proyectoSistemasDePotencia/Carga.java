@@ -84,9 +84,6 @@ public class Carga {
 		this.nombreCarga = nombreCarga;
 	}
 
-	
-	
-	
 
 }
 

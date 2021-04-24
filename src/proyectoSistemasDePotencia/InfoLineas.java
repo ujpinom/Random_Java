@@ -39,8 +39,6 @@ public class InfoLineas extends GridPane {
 	private Label resi=new Label("Resistencia [p,u]");
 	private Label mvar=new Label("Mvar totales de carga");
 	private Label ymedia=new Label("Y/2 [p,u]");
-
-
 	
 	
 	public InfoLineas() {
@@ -48,36 +46,41 @@ public class InfoLineas extends GridPane {
 	}
 	
 	public InfoLineas(Lineas linea) {
+		
 		this.linea=linea;
 		this.setPadding(new Insets(10));
 		this.setVgap(10);
 		this.getRowConstraints().add(new RowConstraints(50) );
+		
 		hb.getChildren().add(infolinea);
 		hb.setAlignment(Pos.CENTER);
 		hb1.setAlignment(Pos.CENTER_RIGHT);
 		hb1.getChildren().add(btncerrar);
+		
 		this.add(hb, 0, 0);
 		this.add(hb1, 0, 2);
+		
 		vb.getChildren().addAll(z1l,z1t,z2l,z2t,z0l,z0t,resi,resistencia,mvar,mvartotales,ymedia,ymediaparalela);
+		
 		this.add(vb,0 , 1);
+		
 		infolinea.setText("INFORMACION DE LA LÍNEA "+linea.getNombreLinea());
 		infolinea.setStroke(Color.RED);
 		
 		z1t.setText(""+linea.getimpedanciaLineaZ1());
 		z2t.setText(""+ linea.getimpedanciaLineaZ2());
 		z0t.setText(""+ linea.getimpedanciaLineaZ0());
+		
 		resistencia.setText(""+linea.getResitencia());
 		mvartotales.setText(""+linea.getmVarDeCargaTotales());
 		ymediaparalela.setText(""+linea.getYMediaParalela());
-		
-		
-		
+	
 		btncerrar.setOnAction(e->{
-			
-			  
+		
 		     boolean vz1t= verificarEntrada(z1t.getText());
 		     boolean vz2t= verificarEntrada(z2t.getText());
 		     boolean vz0t= verificarEntrada(z0t.getText());
+		     
 		     boolean r=verificarEntrada(resistencia.getText());
 		     boolean mv=verificarEntrada(mvartotales.getText());
 		     boolean y=verificarEntrada(ymediaparalela.getText());
@@ -93,9 +96,11 @@ public class InfoLineas extends GridPane {
 		     linea.setimpedanciaLineaZ1(Double.parseDouble(z1t.getText()));
 		     linea.setimpedanciaLineaZ2(Double.parseDouble(z2t.getText()));
 		     linea.setimpedanciaLineaZ0(Double.parseDouble(z0t.getText()));
+		     
 		     linea.setResitencia(Double.parseDouble(resistencia.getText()));
 		     linea.setmVarDeCargaTotales(Double.parseDouble(mvartotales.getText()));
 		     linea.setYMediaParalela(Double.parseDouble(ymediaparalela.getText()));
+		     
 		     stage.close();
 
 		    }

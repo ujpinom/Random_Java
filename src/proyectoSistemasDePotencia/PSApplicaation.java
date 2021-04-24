@@ -66,21 +66,32 @@ public class PSApplicaation extends Application {
 	private RadioButton mono= new RadioButton("F.Monofásica");
 	private RadioButton bifasica= new RadioButton("F.Bifásica");
 	private RadioButton bifasicaTierra= new RadioButton("F.Bifásica-Tierra");
-	private boolean lselected=false;private boolean tselected=false;private boolean gselected=false;private boolean bselected=false; private boolean noneselected=false;
+	private boolean lselected=false;
+	private boolean tselected=false;
+	private boolean gselected=false;
+	private boolean bselected=false; 
+	private boolean noneselected=false;
 	private boolean cSelected;
 	private boolean bancoSelected;
-	private boolean trifasica; private boolean monofasica;private boolean lineaALinea;private boolean bifasicaATierra;private boolean fPotencia;
+	private boolean trifasica; 
+	private boolean monofasica;
+	private boolean lineaALinea;
+	private boolean bifasicaATierra;
+	private boolean fPotencia;
 	private PSApplicaationView paneldibujo= new PSApplicaationView();
 	private RadioButton flujoPotencia=new RadioButton("F.Potencia");
 	private RadioButton carga=new RadioButton("Carga");
 	private RadioButton banco= new RadioButton("Banco");
 	private Button undo1=new Button("B",new ImageView("proyectoSistemasDePotencia/44426.png"));
 	private Button restablecer= new Button("R",new ImageView("proyectoSistemasDePotencia/reanudar_318-1763.jpg"));
+	
+	
 	public static void main(String[] args) {
 
 		Application.launch(args);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void start(Stage a) throws Exception {
 		
@@ -95,28 +106,33 @@ public class PSApplicaation extends Application {
 		barra.setGraphic(new ImageView("proyectoSistemasDePotencia/barra.png"));
 		carga.setGraphic(new ImageView("proyectoSistemasDePotencia/carga.png"));
 		banco.setGraphic(new ImageView("proyectoSistemasDePotencia/Banco.png"));
-		trafo.setTextFill(Color.GREEN);trafo.setContentDisplay(ContentDisplay.LEFT);
-		carga.setToggleGroup(group);carga.setContentDisplay(ContentDisplay.LEFT);
-		banco.setToggleGroup(group);banco.setContentDisplay(ContentDisplay.LEFT);
-		generador.setPadding(new Insets(5, 5, 5, 5));generador.setTextFill(Color.GREEN);
+		trafo.setTextFill(Color.GREEN);
+		trafo.setContentDisplay(ContentDisplay.LEFT);
+		carga.setToggleGroup(group);
+		carga.setContentDisplay(ContentDisplay.LEFT);
+		banco.setToggleGroup(group);
+		banco.setContentDisplay(ContentDisplay.LEFT);
+		generador.setPadding(new Insets(5, 5, 5, 5));
+		generador.setTextFill(Color.GREEN);
 		carga.setPadding(new Insets(5, 5, 5, 5));
 		banco.setPadding(new Insets(5, 5, 5, 5));
-		hbox3.setAlignment(Pos.CENTER);
-		hbox3.getChildren().addAll(undo1,restablecer);
-		generador.setContentDisplay(ContentDisplay.LEFT);barra.setPadding(new Insets(5, 5, 5, 5));
+		hbox3.getChildren().addAll(undo1);
+		generador.setContentDisplay(ContentDisplay.LEFT);
+		barra.setPadding(new Insets(5, 5, 5, 5));
 		barra.setTextFill(Color.GREEN);
 		carga.setTextFill(Color.GREEN);
 		banco.setTextFill(Color.GREEN);
-		none.setPadding(new Insets(5, 5, 5, 5));none.setTextFill(Color.GREEN);
+		none.setPadding(new Insets(5, 5, 5, 5));
+		none.setTextFill(Color.GREEN);
 		none.setContentDisplay(ContentDisplay.LEFT);
 		barra.setContentDisplay(ContentDisplay.LEFT);
-		linea.setToggleGroup(group);trafo.setToggleGroup(group);
+		linea.setToggleGroup(group);
+		trafo.setToggleGroup(group);
 		generador.setToggleGroup(group);
 		barra.setToggleGroup(group);
 		none.setToggleGroup(group);
 		trifa.setToggleGroup(group1);
 		flujoPotencia.setToggleGroup(group1);
-		
 		mono.setToggleGroup(group1);
 		bifasica.setToggleGroup(group1);
 		bifasicaTierra.setToggleGroup(group1);
@@ -144,13 +160,27 @@ public class PSApplicaation extends Application {
 		bPane.setCenter(paneldibujo);
 		display.setEditable(false);
 		
-		
-		Scene scene= new Scene(bPane);a.show();a.setScene(scene);a.setResizable(false);a.setTitle("Análisis de Fallas");
+		Scene scene= new Scene(bPane);a.show();
+		a.setScene(scene);
+		a.setResizable(false);
+		a.setTitle("Análisis de Fallas");
 		
 		Handler handler = new Handler();
-		linea.setOnAction(handler);trafo.setOnAction(handler);generador.setOnAction(handler);barra.setOnAction(handler);none.setOnAction(handler);
-		undo.setOnAction(handler);carga.setOnAction(handler);banco.setOnAction(handler);
-		ejecutar.setOnAction(handler);trifa.setOnAction(handler);mono.setOnAction(handler);bifasica.setOnAction(handler);bifasicaTierra.setOnAction(handler);flujoPotencia.setOnAction(handler);
+		
+		linea.setOnAction(handler);
+		trafo.setOnAction(handler);
+		generador.setOnAction(handler);
+		barra.setOnAction(handler);
+		none.setOnAction(handler);
+		undo.setOnAction(handler);
+		carga.setOnAction(handler);
+		banco.setOnAction(handler);
+		ejecutar.setOnAction(handler);
+		trifa.setOnAction(handler);
+		mono.setOnAction(handler);
+		bifasica.setOnAction(handler);
+		bifasicaTierra.setOnAction(handler);
+		flujoPotencia.setOnAction(handler);
 		undo1.setOnAction(handler);
 		restablecer.setOnAction(handler);
 		
@@ -163,30 +193,37 @@ public class PSApplicaation extends Application {
 		public void handle(Event a) {
 			
 			if(linea.isSelected()) {
-				lselected=true;tselected=false; gselected=false;bselected=false;noneselected=false;cSelected=false;bancoSelected=false;
+				lselected=true;tselected=false; gselected=false;
+				bselected=false;noneselected=false;cSelected=false;bancoSelected=false;
 				
 			}
 
 			if(trafo.isSelected()) {
-				lselected=false;tselected=true; gselected=false;bselected=false;noneselected=false;cSelected=false;bancoSelected=false;
+				lselected=false;tselected=true; gselected=false;
+				bselected=false;noneselected=false;cSelected=false;bancoSelected=false;
 				
 			}
 			if(generador.isSelected()) {
-				lselected=false;tselected=false; gselected=true;bselected=false;noneselected=false;cSelected=false;bancoSelected=false;
+				lselected=false;tselected=false; gselected=true;
+				bselected=false;noneselected=false;cSelected=false;bancoSelected=false;
 				
 			}
 			if(barra.isSelected()) {
-				lselected=false;tselected=false; gselected=false;bselected=true;noneselected=false;cSelected=false;bancoSelected=false;
+				lselected=false;tselected=false; gselected=false;
+				bselected=true;noneselected=false;cSelected=false;bancoSelected=false;
 			}
 			if(none.isSelected()) {
-				lselected=false;tselected=false; gselected=false;bselected=false;noneselected=true;cSelected=false;bancoSelected=false;
+				lselected=false;tselected=false; gselected=false;
+				bselected=false;noneselected=true;cSelected=false;bancoSelected=false;
 			}
 			if(carga.isSelected()) {
-				lselected=false;tselected=false; gselected=false;bselected=false;noneselected=false;cSelected=true;bancoSelected=false;
+				lselected=false;tselected=false; gselected=false;
+				bselected=false;noneselected=false;cSelected=true;bancoSelected=false;
 			}
 			
 			if(banco.isSelected()) {
-				lselected=false;tselected=false; gselected=false;bselected=false;noneselected=false;cSelected=false;bancoSelected=true;
+				lselected=false;tselected=false; gselected=false;
+				bselected=false;noneselected=false;cSelected=false;bancoSelected=true;
 			}
 			
 			if(a.getSource()==undo) {
@@ -195,47 +232,64 @@ public class PSApplicaation extends Application {
 			}
 			
 			if(a.getSource()==undo1) {
+				
 				paneldibujo.borrarUltimoElemento();
 			}
 			
-			if(a.getSource()==restablecer) {
-				paneldibujo.reestablecerElementos();
-			}
+//			if(a.getSource()==restablecer) {
+//				paneldibujo.reestablecerElementos();
+//			}
 			
 			if(trifa.isSelected()) {
-				trifasica=true;monofasica=false;lineaALinea=false;bifasicaATierra=false;fPotencia=false;
+				
+				trifasica=true;monofasica=false;lineaALinea=false;
+				bifasicaATierra=false;fPotencia=false;
+				
 				carga.setDisable(true);
 				banco.setDisable(true);
 			}
 			
 			if(mono.isSelected()) {
-				trifasica=false;monofasica=true;lineaALinea=false;bifasicaATierra=false;fPotencia=false;
+				
+				trifasica=false;monofasica=true;lineaALinea=false;
+				bifasicaATierra=false;fPotencia=false;
+				
 				carga.setDisable(true);
 				banco.setDisable(true);
 
 			}
 			
 			if(bifasica.isSelected()) {
-				trifasica=false;monofasica=false;lineaALinea=true;bifasicaATierra=false;fPotencia=false;
+				
+				trifasica=false;monofasica=false;lineaALinea=true;
+				bifasicaATierra=false;fPotencia=false;
+				
 				carga.setDisable(true);
 				banco.setDisable(true);
 
 			}
 			
 			if(bifasicaTierra.isSelected()) {
-				trifasica=false;monofasica=false;lineaALinea=false;bifasicaATierra=true;fPotencia=false;
+				
+				trifasica=false;monofasica=false;lineaALinea=false;
+				bifasicaATierra=true;fPotencia=false;
+				
 				carga.setDisable(true);
 				banco.setDisable(true);
 
 			}
 			
 			if(flujoPotencia.isSelected()) {
-				trifasica=false;monofasica=false;lineaALinea=false;bifasicaATierra=false;fPotencia=true;
+				
+				trifasica=false;monofasica=false;lineaALinea=false;
+				bifasicaATierra=false;fPotencia=true;
+				
 				carga.setDisable(false);
 				banco.setDisable(false);
 
 			}
 			if(!flujoPotencia.isSelected()) {
+				
 				carga.setDisable(true);
 				banco.setDisable(true);
 			}
@@ -243,8 +297,7 @@ public class PSApplicaation extends Application {
 			
 			
 			if(a.getSource()==ejecutar) {
-				
-				
+					
 				List<List<Integer>> bb= paneldibujo.getGraph().componentesConectados();
 				
 				if(bb.size()==2) {
@@ -257,15 +310,14 @@ public class PSApplicaation extends Application {
 				}
 				
 			}
-			
 	
-		
 		}
 		
 	}
 	
 	
 	class PSApplicaationView extends Pane{
+		
 		private ArrayList<Barras> barras= new ArrayList<>();
 		private ArrayList<Lineas> conexiones= new ArrayList<>();
 		private ArrayList<Transformador> conexiones1= new ArrayList<>();
@@ -277,6 +329,7 @@ public class PSApplicaation extends Application {
 		private Barras startB=null;
 		private boolean isLineOn = false;
 		private int radioCirculo=14;
+		
 		private String nombreBarra= "B";
 		private String nombreLinea="L";private String nombreTrafo="T";
 		private String nombreGenerador="G";
@@ -290,15 +343,18 @@ public class PSApplicaation extends Application {
 
 		private ObservableList<Node> lista= this.getChildren();
 		private ArrayList<Double> posBarra= new ArrayList<>();
+		
 		private WeightedGraph<Barras> grafo1;
 		private WeightedGraph<Barras> grafo2;
 		private WeightedGraph<Barras> grafo0;
+		
 		private double impedanciaDeFalla;
 		private String tipoElementoFallado;
 		private ArrayList<Double> coorFalla= new ArrayList<>();
 		private boolean fallaEnLinea=false;
 		private Lineas lineaFallada;
 		private Barras barraFallada;
+		
 		private double xCoorG;
 		private double yCoorG;
 		private double magCorrientePuntoFallaFaseA;
@@ -309,12 +365,15 @@ public class PSApplicaation extends Application {
 		private double angCorrientePuntoFallaFaseC;
 		private double largoBarra=70;
 		private double ancho=10;
+		
 		private LinkedList<Object> objetosCreados= new LinkedList<>();   //Almacena todos los objectos creados para llevar un record de ellos;
 		private LinkedList<Object> restablecerElementos= new LinkedList<>();
 		
 		public PSApplicaationView() {
+			
 			repaint();
 			barras.add(new Barras("Tierra"));
+			
 			this.setOnMouseClicked(e->{
 				
 				double x= e.getX();double y= e.getY();
@@ -323,7 +382,9 @@ public class PSApplicaation extends Application {
 				if(e.getButton()==MouseButton.PRIMARY) {
 					
 					if(!barraMuycerca(x,y)) {
+						
 						  if (isLineOn && (lselected||tselected)) {
+							  
 				                isLineOn = false;
 				                repaint();
 				                return;
@@ -350,9 +411,13 @@ public class PSApplicaation extends Application {
 				}
 				
 				if((lselected||tselected)&&isLineOn ) {
+					
 					if(b!=null) {
+						
 					if(!sonIguales(b,startB)) {
+						
 					if(conexiones.isEmpty()&&lselected) {
+						
 						Lineas l= new Lineas(startB,b,1,1,1);
 						conexiones.add(l);
 						objetosCreados.add(l);
@@ -360,6 +425,7 @@ public class PSApplicaation extends Application {
 						
 					}
 					else if(conexiones.isEmpty()&&tselected) {
+						
 						Transformador t= new Transformador(startB,b,1,1,1);
 						conexiones1.add(t);
 						objetosCreados.add(t);
@@ -370,6 +436,7 @@ public class PSApplicaation extends Application {
 						double pe=longitudLinea(b,startB);
 					
 						if(!distanciasLineas.contains(pe) && lselected) {
+							
 							distanciasLineas.add(pe);
 							conexiones.add(new Lineas(startB,b,1,1,1));
 							objetosCreados.add(new Lineas(startB,b,1,1,1));
@@ -377,6 +444,7 @@ public class PSApplicaation extends Application {
 						}
 						
 						else if(!distanciasLineas.contains(pe) && tselected) {
+							
 							distanciasLineas.add(pe);
 							conexiones1.add(new Transformador(startB,b,1,1,1));
 							objetosCreados.add(new Transformador(startB,b,1,1,1));
@@ -387,6 +455,7 @@ public class PSApplicaation extends Application {
 					
 					isLineOn = false;
 					repaint();
+					
 					}
 				}
 			}
@@ -395,9 +464,11 @@ public class PSApplicaation extends Application {
 					
 					
 					if(!corGenerador.contains(b.getXbarra())) {
+						
 						xCoorG=e.getX();yCoorG=e.getY();
 						
 						b.setxCoorG(xCoorG);b.setyCoorG(yCoorG);
+						
 						conexiongene.add(new Generadores(nombreGenerador,1,1,1,b));
 						objetosCreados.add(new Generadores(nombreGenerador,1,1,1,b));
 						
@@ -411,14 +482,15 @@ public class PSApplicaation extends Application {
 			if(cSelected && b!=null) {
 				
 				if(!corCarga.contains(b.getXbarra())) {
+					
 					b.setCoordenadasCarga(new Point2D(e.getX(),e.getY()));
+					
 					cargas.add(new Carga(new Point2D(e.getX(),e.getY()),b,nombreCarga));
 					objetosCreados.add(new Carga(new Point2D(e.getX(),e.getY()),b,nombreCarga));
 					corCarga.add(b.getXbarra());
+					
 					repaint();
 					return;
-					
-					
 				}
 			
 			}
@@ -426,6 +498,7 @@ public class PSApplicaation extends Application {
 			if(bancoSelected && b!=null) {
 				
 				if(!corBanco.contains(b.getXbarra())) {
+					
 					b.setCoordenadasBanco(new Point2D(e.getX(),e.getY()));
 					bancos.add(new Bancos(new Point2D(e.getX(),e.getY()),b,nombreBanco));
 					objetosCreados.add(new Bancos(new Point2D(e.getX(),e.getY()),b,nombreBanco));
@@ -441,20 +514,22 @@ public class PSApplicaation extends Application {
 					 tipoElemento=tipoElemento(x,y);
 					
 					if((tipoElemento instanceof Rectangle)&&((Rectangle)tipoElemento).getWidth()!=30){
-						
-						
-						display.setText("Elemento:   "+b.getNombreBarra()+"    Voltaje-Prefalla: "+b.getVoltajePrefalla()+" p,u"+"\nCorriente punto de falla (Elemento "+tipoElementoFallado+")"+":"+"\nFase A: "+String.format("%.4f", magCorrientePuntoFallaFaseA)
+			
+						display.setText("Elemento:   "+b.getNombreBarra()+"    Voltaje-Prefalla: "+b.getVoltajePrefalla()+
+								" p,u"+"\nCorriente punto de falla (Elemento "+tipoElementoFallado+")"+":"+"\nFase A: "+String.format("%.4f", magCorrientePuntoFallaFaseA)
 						+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseA)+"° "+"[p,u]         Fase B: "+String.format("%.4f",magCorrientePuntoFallaFaseB)
 						+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseB)+"° "+"[p,u]         Fase C: "+String.format("%.4f", magCorrientePuntoFallaFaseC)
 						+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseC)+"° "+"[p,u]"+"\nVoltaje/Fase Post-Falla:  "
-						+"\nFase A: "+String.format("%.4f", b.getVoltajePosFallaFaseA())+" Ang. "+String.format("%.4f", b.getAnguloVoltajeFaseA())+"° "+"[p,u]         Fase B: "+String.format("%.4f", b.getVoltajePosFallaFaseB())+" Ang. "+String.format("%.4f", b.getAnguloVoltajeFaseB())+"° "+"[p,u]         "
+						+"\nFase A: "+String.format("%.4f", b.getVoltajePosFallaFaseA())+" Ang. "+String.format("%.4f", b.getAnguloVoltajeFaseA())+
+						"° "+"[p,u]         Fase B: "+String.format("%.4f", b.getVoltajePosFallaFaseB())+" Ang. "+String.format("%.4f", b.getAnguloVoltajeFaseB())+"° "+"[p,u]         "
 								+ "Fase C: "+String.format("%.4f", b.getVoltajePosFallaFaseC())+" Ang. "+String.format("%.4f", b.getAnguloVoltajeFaseC())+"° "+"[p,u]");
+						
 						if(e.isAltDown()) {
-							
 							
 							InfoBarras infoBarra= new InfoBarras(b);
 							Scene dad= new Scene(infoBarra);
 							Stage sta= new Stage();
+							
 							sta.setScene(dad);
 							sta.setTitle("INFORMACIÓN DE BARRAS");
 							sta.setResizable(false);
@@ -484,15 +559,12 @@ public class PSApplicaation extends Application {
 									b.setAncho(ancho);
 									b.setLargo(largoBarra);
 									b.setOrientacionPrimaria(b.getOrientacion());
-									
-									
+								
 								}
 								
 								
 							}
-							
-							
-							
+					
 							repaint();
 							return;
 
@@ -501,6 +573,7 @@ public class PSApplicaation extends Application {
 					}
 					
 					else if(tipoElemento instanceof Line ) {
+						
 						boolean bandera=false;
 						boolean bandera1=false;boolean bandera2=false;
 					
@@ -516,31 +589,49 @@ public class PSApplicaation extends Application {
 //									&&(conexiones.get(i).getBarra1().getXbarra()+Barras.ancho/2==finalX || conexiones.get(i).getBarra2().getXbarra()+Barras.ancho/2==finalX)) {
 								
 								if(!fallaEnLinea || conexiones.get(i)!=lineaFallada) {
-									display.setText("Elemento:   "+conexiones.get(i).getNombreLinea()+"\nCorriente punto de falla (Elemento "+tipoElementoFallado+")"+":"+"\nFase A: "+String.format("%.4f", magCorrientePuntoFallaFaseA)
-									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseA)+"° "+"[p,u]         Fase B: "+String.format("%.4f", magCorrientePuntoFallaFaseB)
-									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseB)+"° "+"[p,u]         Fase C: "+String.format("%.4f",magCorrientePuntoFallaFaseC)
-									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseC)+"° "+"[p,u]"+ "\nCorriente/Fase Post-Falla:  "+"\nFase A: "+String.format("%.4f", conexiones.get(i).getCorrienteFallaFaseA())+"[p,u]"
+									
+									display.setText("Elemento:   "+conexiones.get(i).getNombreLinea()+"\nCorriente punto de falla (Elemento "+
+								tipoElementoFallado+")"+":"+"\nFase A: "+String.format("%.4f", magCorrientePuntoFallaFaseA)
+									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseA)+"° "+"[p,u]         Fase B: "+
+								String.format("%.4f", magCorrientePuntoFallaFaseB)
+									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseB)+"° "+"[p,u]         Fase C: "+
+								String.format("%.4f",magCorrientePuntoFallaFaseC)
+									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseC)+"° "+"[p,u]"+ "\nCorriente/Fase Post-Falla:  "+
+								"\nFase A: "+String.format("%.4f", conexiones.get(i).getCorrienteFallaFaseA())+"[p,u]"
 													+ "         Fase B: "+String.format("%.4f", conexiones.get(i).getCorrienteFallaFaseB())+"[p,u]         "
 											+ "Fase C: "+String.format("%.4f", conexiones.get(i).getCorrienteFallaFaseC())+"[p,u]");
 									
 								}
 								else {
-									display.setText("Elemento:   "+conexiones.get(i).getNombreLinea()+"\nCorriente punto de falla (Elemento 50%-"+tipoElementoFallado+")"+":"+"\nFase A: "+String.format("%.4f", magCorrientePuntoFallaFaseA)
-									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseA)+"° "+"[p,u]         Fase B: "+String.format("%.4f", magCorrientePuntoFallaFaseB)
-									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseB)+"° "+"[p,u]         Fase C: "+String.format("%.4f", magCorrientePuntoFallaFaseC)
-									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseC)+"° "+"[p,u]"+ "\nContribucción Barra-"+conexiones.get(i).getBarra1().getNombreBarra()+" : "+
-											"\nFase A: " + String.format("%.4f", conexiones.get(i).getBarra1().getContribuccionFallaFaseA())+" Ang. "+String.format("%.4f", conexiones.get(i).getBarra1().getAnguloContribucionFaseA())+"° "+"[p,u]"+
-											 "         Fase B: "+String.format("%.4f", conexiones.get(i).getBarra1().getContribuccionFallaFaseB())+" Ang. "+String.format("%.4f", conexiones.get(i).getBarra1().getAnguloContribucionFaseB())+"° "+"[p,u]"+
-											 "         Fase C: "+String.format("%.4f", conexiones.get(i).getBarra1().getContribuccionFallaFaseC())+" Ang. "+String.format("%.4f", conexiones.get(i).getBarra1().getAnguloContribucionFaseC())+"° "+"[p,u]"+
-											"\nContribucción Barra-"+conexiones.get(i).getBarra2().getNombreBarra()+" : "+"\nFase A: " + String.format("%.4f", conexiones.get(i).getBarra2().getContribuccionFallaFaseA())+" Ang. "+String.format("%.4f", conexiones.get(i).getBarra2().getAnguloContribucionFaseA())+
-											"° "+"[p,u]"+ "         Fase B: "+String.format("%.4f", conexiones.get(i).getBarra2().getContribuccionFallaFaseB())+" Ang. "+String.format("%.4f", conexiones.get(i).getBarra2().getAnguloContribucionFaseB())+"° "+"[p,u]"+
-											 "         Fase C: "+String.format("%.4f", conexiones.get(i).getBarra2().getContribuccionFallaFaseC())+" Ang. "+String.format("%.4f", conexiones.get(i).getBarra2().getAnguloContribucionFaseC())+"° "+"[p,u]");
+									
+									display.setText("Elemento:   "+conexiones.get(i).getNombreLinea()+"\nCorriente punto de falla (Elemento 50%-"+
+									tipoElementoFallado+")"+":"+"\nFase A: "+String.format("%.4f", magCorrientePuntoFallaFaseA)
+									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseA)+"° "+"[p,u]         Fase B: "+
+									String.format("%.4f", magCorrientePuntoFallaFaseB)
+									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseB)+"° "+"[p,u]         Fase C: "+
+									String.format("%.4f", magCorrientePuntoFallaFaseC)
+									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseC)+"° "+"[p,u]"+ "\nContribucción Barra-"+
+									conexiones.get(i).getBarra1().getNombreBarra()+" : "+
+											"\nFase A: " + String.format("%.4f", conexiones.get(i).getBarra1().getContribuccionFallaFaseA())+
+											" Ang. "+String.format("%.4f", conexiones.get(i).getBarra1().getAnguloContribucionFaseA())+"° "+"[p,u]"+
+											 "         Fase B: "+String.format("%.4f", conexiones.get(i).getBarra1().getContribuccionFallaFaseB())+
+											 " Ang. "+String.format("%.4f", conexiones.get(i).getBarra1().getAnguloContribucionFaseB())+"° "+"[p,u]"+
+											 "         Fase C: "+String.format("%.4f", conexiones.get(i).getBarra1().getContribuccionFallaFaseC())+
+											 " Ang. "+String.format("%.4f", conexiones.get(i).getBarra1().getAnguloContribucionFaseC())+"° "+"[p,u]"+
+											"\nContribucción Barra-"+conexiones.get(i).getBarra2().getNombreBarra()+" : "+"\nFase A: " + 
+											 String.format("%.4f", conexiones.get(i).getBarra2().getContribuccionFallaFaseA())+" Ang. "+
+											String.format("%.4f", conexiones.get(i).getBarra2().getAnguloContribucionFaseA())+
+											"° "+"[p,u]"+ "         Fase B: "+String.format("%.4f", conexiones.get(i).getBarra2().getContribuccionFallaFaseB())+
+											" Ang. "+String.format("%.4f", conexiones.get(i).getBarra2().getAnguloContribucionFaseB())+"° "+"[p,u]"+
+											 "         Fase C: "+String.format("%.4f", conexiones.get(i).getBarra2().getContribuccionFallaFaseC())+" Ang. "+
+											String.format("%.4f", conexiones.get(i).getBarra2().getAnguloContribucionFaseC())+"° "+"[p,u]");
 									
 								}
 
 								
 								bandera=true;
 								bandera1=true;
+								
 									if(e.isAltDown()) {
 										
 										InfoLineas infolinea= new InfoLineas(conexiones.get(i));
@@ -551,13 +642,11 @@ public class PSApplicaation extends Application {
 										sta.setResizable(false);
 										sta.initModality(Modality.APPLICATION_MODAL);
 										sta.showAndWait();
-										
-										
-										
+			
 									}
+									
 								break;
-								
-								
+					
 							}
 							
 						}
@@ -574,28 +663,38 @@ public class PSApplicaation extends Application {
 //								if((conexiones1.get(i).getBarra1().getXbarra()+Barras.ancho/2==inicioX || conexiones1.get(i).getBarra2().getXbarra()+Barras.ancho/2==inicioX)
 //										&&(conexiones1.get(i).getBarra1().getXbarra()+Barras.ancho/2==finalX || conexiones1.get(i).getBarra2().getXbarra()+Barras.ancho/2==finalX)) {
 
-									display.setText("Elemento:   "+conexiones1.get(i).getNombreLinea()+"   Conexión( "+conexiones1.get(i).getConexionPrimaria()+","+conexiones1.get(i).getConexionSecundaria()+" )"+"\nCorriente punto de falla (Elemento "+tipoElementoFallado+")"+":"+"\nFase A: "+String.format("%.4f", magCorrientePuntoFallaFaseA)
-									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseA)+"° "+"[p,u]         Fase B: "+String.format("%.4f", magCorrientePuntoFallaFaseB)
-									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseB)+"° "+"[p,u]         Fase C: "+String.format("%.4f", magCorrientePuntoFallaFaseC)
-									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseC)+"° "+"[p,u]"+ "\nCorriente/Fase Post-Falla:  "+"\nFase A: "+String.format("%.4f", conexiones1.get(i).getCorrienteFallaFaseA())+"[p,u]"
+									display.setText("Elemento:   "+conexiones1.get(i).getNombreLinea()+"   Conexión( "+
+									conexiones1.get(i).getConexionPrimaria()+","+conexiones1.get(i).getConexionSecundaria()+" )"+
+											"\nCorriente punto de falla (Elemento "+tipoElementoFallado+")"+":"+"\nFase A: "+
+									String.format("%.4f", magCorrientePuntoFallaFaseA)
+									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseA)+"° "+"[p,u]         Fase B: "+
+									String.format("%.4f", magCorrientePuntoFallaFaseB)
+									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseB)+"° "+"[p,u]         Fase C: "+
+									String.format("%.4f", magCorrientePuntoFallaFaseC)
+									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseC)+"° "+"[p,u]"+ "\nCorriente/Fase Post-Falla:  "+
+									"\nFase A: "+String.format("%.4f", conexiones1.get(i).getCorrienteFallaFaseA())+"[p,u]"
 													+ "         Fase B: "+String.format("%.4f", conexiones1.get(i).getCorrienteFallaFaseB())+"[p,u]         "
 											+ "Fase C: "+String.format("%.4f", conexiones1.get(i).getCorrienteFallaFaseC())+"[p,u]");
+									
 									bandera1=true;
+									
 									if(e.isAltDown()) {
+										
 										InfoTrafo infotrafo= new InfoTrafo(conexiones1.get(i));
 										Scene dad= new Scene(infotrafo);
 										Stage sta= new Stage();
+										
 										sta.setScene(dad);
 										sta.setTitle("INFORMACIÓN DE TRANSFORMADORES");
 										sta.setResizable(false);
 										sta.initModality(Modality.APPLICATION_MODAL);
 										sta.showAndWait();
+										
 										conexiones1.get(i).setImpedanciaAterrizamientoPrimaria(infotrafo.getImpedanciaAterrizamientoPrimaria());
 										conexiones1.get(i).setImpedanciaAterrizamientoSecundaria(infotrafo.getImpedanciaAterrizamientoSecundaria());
 									}
 									break;
-									
-									
+
 								}
 								
 							}
@@ -609,10 +708,13 @@ public class PSApplicaation extends Application {
 								
 								if(((Line)tipoElemento).contains(pntMedio)) {
 									
-									display.setText("Elemento:   "+cargas.get(i).getNombreCarga()+"\nPotencia Activa [MW]: "+cargas.get(i).getPotenciaActiva()+"\nPotencia Reactiva [MVars]: "+cargas.get(i).getPotenciaReactiva());
+									display.setText("Elemento:   "+cargas.get(i).getNombreCarga()+"\nPotencia Activa [MW]: "+
+									cargas.get(i).getPotenciaActiva()+"\nPotencia Reactiva [MVars]: "+cargas.get(i).getPotenciaReactiva());
 									
 									bandera2=true;
+									
 									if(e.isAltDown()) {
+										
 										InfoCarga infoCarga= new InfoCarga(cargas.get(i));
 										Scene dad= new Scene(infoCarga);
 										Stage sta= new Stage();
@@ -633,6 +735,7 @@ public class PSApplicaation extends Application {
 						if(!bandera && !bandera1 && !bandera2) {
 							
 							for(int i=0;i<bancos.size();i++) {
+								
 								Point2D pntmedio=bancos.get(i).getPuntoMedio();
 								
 								if(((Line)tipoElemento).contains(pntmedio)) {
@@ -668,23 +771,32 @@ public class PSApplicaation extends Application {
 							
 							if(((Circle)tipoElemento).contains(pntMedio)) {
 								
-								display.setText("Elemento:   "+conexiones1.get(i).getNombreLinea()+"   Conexión( "+conexiones1.get(i).getConexionPrimaria()+","+conexiones1.get(i).getConexionSecundaria()+" )"+"\nCorriente punto de falla (Elemento "+tipoElementoFallado+")"+":"+"\nFase A: "+String.format("%.4f", magCorrientePuntoFallaFaseA)
-								+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseA)+"° "+"[p,u]         Fase B: "+String.format("%.4f", magCorrientePuntoFallaFaseB)
-								+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseB)+"° "+"[p,u]         Fase C: "+String.format("%.4f", magCorrientePuntoFallaFaseC)
-								+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseC)+"° "+"[p,u]"+ "\nCorriente/Fase Post-Falla:  "+"\nFase A: "+String.format("%.4f", conexiones1.get(i).getCorrienteFallaFaseA())+"[p,u]"
+								display.setText("Elemento:   "+conexiones1.get(i).getNombreLinea()+"   Conexión( "+
+								conexiones1.get(i).getConexionPrimaria()+","+conexiones1.get(i).getConexionSecundaria()+" )"+
+										"\nCorriente punto de falla (Elemento "+tipoElementoFallado+")"+":"+"\nFase A: "+
+								String.format("%.4f", magCorrientePuntoFallaFaseA)
+								+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseA)+"° "+"[p,u]         Fase B: "+
+								String.format("%.4f", magCorrientePuntoFallaFaseB)
+								+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseB)+"° "+"[p,u]         Fase C: "+
+								String.format("%.4f", magCorrientePuntoFallaFaseC)
+								+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseC)+"° "+"[p,u]"+ "\nCorriente/Fase Post-Falla:  "+
+								"\nFase A: "+String.format("%.4f", conexiones1.get(i).getCorrienteFallaFaseA())+"[p,u]"
 												+ "         Fase B: "+String.format("%.4f", conexiones1.get(i).getCorrienteFallaFaseB())+"[p,u]         "
 										+ "Fase C: "+String.format("%.4f", conexiones1.get(i).getCorrienteFallaFaseC())+"[p,u]");
 								
 							
 								if(e.isAltDown()) {
+									
 									InfoTrafo infotrafo= new InfoTrafo(conexiones1.get(i));
 									Scene dad= new Scene(infotrafo);
 									Stage sta= new Stage();
+									
 									sta.setScene(dad);
 									sta.setTitle("INFORMACIÓN DE TRANSFORMADORES");
 									sta.setResizable(false);
 									sta.initModality(Modality.APPLICATION_MODAL);
 									sta.showAndWait();
+									
 									conexiones1.get(i).setImpedanciaAterrizamientoPrimaria(infotrafo.getImpedanciaAterrizamientoPrimaria());
 									conexiones1.get(i).setImpedanciaAterrizamientoSecundaria(infotrafo.getImpedanciaAterrizamientoSecundaria());
 								}
@@ -706,25 +818,43 @@ public class PSApplicaation extends Application {
 							if(((Rectangle)tipoElemento).contains(pntMedio)) {
 								
 								if(!fallaEnLinea || conexiones.get(i)!=lineaFallada) {
-									display.setText("Elemento:   "+conexiones.get(i).getNombreLinea()+"\nCorriente punto de falla (Elemento "+tipoElementoFallado+")"+":"+"\nFase A: "+String.format("%.4f", magCorrientePuntoFallaFaseA)
-									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseA)+"° "+"[p,u]         Fase B: "+String.format("%.4f", magCorrientePuntoFallaFaseB)
-									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseB)+"° "+"[p,u]         Fase C: "+String.format("%.4f",magCorrientePuntoFallaFaseC)
-									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseC)+"° "+"[p,u]"+ "\nCorriente/Fase Post-Falla:  "+"\nFase A: "+String.format("%.4f", conexiones.get(i).getCorrienteFallaFaseA())+"[p,u]"
+									
+									display.setText("Elemento:   "+conexiones.get(i).getNombreLinea()+"\nCorriente punto de falla (Elemento "+
+								tipoElementoFallado+")"+":"+"\nFase A: "+String.format("%.4f", magCorrientePuntoFallaFaseA)
+									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseA)+"° "+"[p,u]         Fase B: "+
+								String.format("%.4f", magCorrientePuntoFallaFaseB)
+									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseB)+"° "+"[p,u]         Fase C: "+
+								String.format("%.4f",magCorrientePuntoFallaFaseC)
+									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseC)+"° "+"[p,u]"+ "\nCorriente/Fase Post-Falla:  "+
+								"\nFase A: "+String.format("%.4f", conexiones.get(i).getCorrienteFallaFaseA())+"[p,u]"
 													+ "         Fase B: "+String.format("%.4f", conexiones.get(i).getCorrienteFallaFaseB())+"[p,u]         "
 											+ "Fase C: "+String.format("%.4f", conexiones.get(i).getCorrienteFallaFaseC())+"[p,u]");
 									
 								}
 								else {
-									display.setText("Elemento:   "+conexiones.get(i).getNombreLinea()+"\nCorriente punto de falla (Elemento 50%-"+tipoElementoFallado+")"+":"+"\nFase A: "+String.format("%.4f", magCorrientePuntoFallaFaseA)
-									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseA)+"° "+"[p,u]         Fase B: "+String.format("%.4f", magCorrientePuntoFallaFaseB)
-									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseB)+"° "+"[p,u]         Fase C: "+String.format("%.4f", magCorrientePuntoFallaFaseC)
-									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseC)+"° "+"[p,u]"+ "\nContribucción Barra-"+conexiones.get(i).getBarra1().getNombreBarra()+" : "+
-											"\nFase A: " + String.format("%.4f", conexiones.get(i).getBarra1().getContribuccionFallaFaseA())+" Ang. "+String.format("%.4f", conexiones.get(i).getBarra1().getAnguloContribucionFaseA())+"° "+"[p,u]"+
-											 "         Fase B: "+String.format("%.4f", conexiones.get(i).getBarra1().getContribuccionFallaFaseB())+" Ang. "+String.format("%.4f", conexiones.get(i).getBarra1().getAnguloContribucionFaseB())+"° "+"[p,u]"+
-											 "         Fase C: "+String.format("%.4f", conexiones.get(i).getBarra1().getContribuccionFallaFaseC())+" Ang. "+String.format("%.4f", conexiones.get(i).getBarra1().getAnguloContribucionFaseC())+"° "+"[p,u]"+
-											"\nContribucción Barra-"+conexiones.get(i).getBarra2().getNombreBarra()+" : "+"\nFase A: " + String.format("%.4f", conexiones.get(i).getBarra2().getContribuccionFallaFaseA())+" Ang. "+String.format("%.4f", conexiones.get(i).getBarra2().getAnguloContribucionFaseA())+
-											"° "+"[p,u]"+ "         Fase B: "+String.format("%.4f", conexiones.get(i).getBarra2().getContribuccionFallaFaseB())+" Ang. "+String.format("%.4f", conexiones.get(i).getBarra2().getAnguloContribucionFaseB())+"° "+"[p,u]"+
-											 "         Fase C: "+String.format("%.4f", conexiones.get(i).getBarra2().getContribuccionFallaFaseC())+" Ang. "+String.format("%.4f", conexiones.get(i).getBarra2().getAnguloContribucionFaseC())+"° "+"[p,u]");
+									
+									
+									display.setText("Elemento:   "+conexiones.get(i).getNombreLinea()+"\nCorriente punto de falla (Elemento 50%-"+
+									tipoElementoFallado+")"+":"+"\nFase A: "+String.format("%.4f", magCorrientePuntoFallaFaseA)
+									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseA)+"° "+"[p,u]         Fase B: "+
+									String.format("%.4f", magCorrientePuntoFallaFaseB)
+									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseB)+"° "+"[p,u]         Fase C: "+
+									String.format("%.4f", magCorrientePuntoFallaFaseC)
+									+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseC)+"° "+"[p,u]"+ "\nContribucción Barra-"+
+									conexiones.get(i).getBarra1().getNombreBarra()+" : "+
+											"\nFase A: " + String.format("%.4f", conexiones.get(i).getBarra1().getContribuccionFallaFaseA())+
+											" Ang. "+String.format("%.4f", conexiones.get(i).getBarra1().getAnguloContribucionFaseA())+"° "+"[p,u]"+
+											 "         Fase B: "+String.format("%.4f", conexiones.get(i).getBarra1().getContribuccionFallaFaseB())+
+											 " Ang. "+String.format("%.4f", conexiones.get(i).getBarra1().getAnguloContribucionFaseB())+"° "+"[p,u]"+
+											 "         Fase C: "+String.format("%.4f", conexiones.get(i).getBarra1().getContribuccionFallaFaseC())+
+											 " Ang. "+String.format("%.4f", conexiones.get(i).getBarra1().getAnguloContribucionFaseC())+"° "+"[p,u]"+
+											"\nContribucción Barra-"+conexiones.get(i).getBarra2().getNombreBarra()+" : "+"\nFase A: " + 
+											 String.format("%.4f", conexiones.get(i).getBarra2().getContribuccionFallaFaseA())+" Ang. "+
+											String.format("%.4f", conexiones.get(i).getBarra2().getAnguloContribucionFaseA())+
+											"° "+"[p,u]"+ "         Fase B: "+String.format("%.4f", conexiones.get(i).getBarra2().getContribuccionFallaFaseB())+
+											" Ang. "+String.format("%.4f", conexiones.get(i).getBarra2().getAnguloContribucionFaseB())+"° "+"[p,u]"+
+											 "         Fase C: "+String.format("%.4f", conexiones.get(i).getBarra2().getContribuccionFallaFaseC())+
+											 " Ang. "+String.format("%.4f", conexiones.get(i).getBarra2().getAnguloContribucionFaseC())+"° "+"[p,u]");
 									
 								}
 								
@@ -739,8 +869,7 @@ public class PSApplicaation extends Application {
 										sta.setResizable(false);
 										sta.initModality(Modality.APPLICATION_MODAL);
 										sta.showAndWait();
-										
-										
+				
 									}
 								break;
 								
@@ -757,32 +886,45 @@ public class PSApplicaation extends Application {
 						double xcenter= ((Circle)tipoElemento).getCenterX();
 						for(int i=0;i<conexiongene.size();i++) {
 							
-							if(conexiongene.get(i).getBarra().getxCoorG()-30==xcenter ||conexiongene.get(i).getBarra().getxCoorG()+40==xcenter||((Circle)tipoElemento).contains(conexiongene.get(i).getXCenter(),conexiongene.get(i).getYCenter()) ) {
+							if(conexiongene.get(i).getBarra().getxCoorG()-30==xcenter ||
+									conexiongene.get(i).getBarra().getxCoorG()+40==xcenter||
+									((Circle)tipoElemento).contains(conexiongene.get(i).getXCenter(),conexiongene.get(i).getYCenter()) ) {
 								
-								display.setText("Elemento:   "+conexiongene.get(i).getNombreGenerador()+"\nCorriente punto de falla (Elemento "+tipoElementoFallado+")"+":"+"\nFase A: "+String.format("%.4f", magCorrientePuntoFallaFaseA)
-								+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseA)+"° "+"[p,u]         Fase B: "+String.format("%.4f",  magCorrientePuntoFallaFaseB)
-								+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseB)+"° "+"[p,u]         Fase C: "+String.format("%.4f",  magCorrientePuntoFallaFaseC)
-								+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseC)+"° "+"[p,u]"+"\nContribucción de la máquina a la falla: "+"\nFase A: "+String.format("%.2f", conexiongene.get(i).getCorrienteFaseA())+" Ang. "+String.format("%.2f", conexiongene.get(i).getAnguloCorrienteFaseA()) +"° "+"[p,u]"
-										+ "         Fase B: "+String.format("%.2f", conexiongene.get(i).getCorrienteFaseB())+" Ang. "+String.format("%.2f", conexiongene.get(i).getAnguloCorrienteFaseB())+"° "+"[p,u]         "
-										+ "Fase C: "+String.format("%.2f", conexiongene.get(i).getCorrienteFaseC())+" Ang. "+String.format("%.2f", conexiongene.get(i).getAnguloCorrienteFaseC())+"° "+"[p,u]");
+								
+								display.setText("Elemento:   "+conexiongene.get(i).getNombreGenerador()+"\nCorriente punto de falla (Elemento "+
+								tipoElementoFallado+")"+":"+"\nFase A: "+String.format("%.4f", magCorrientePuntoFallaFaseA)
+								+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseA)+"° "+"[p,u]         Fase B: "+
+								String.format("%.4f",  magCorrientePuntoFallaFaseB)
+								+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseB)+"° "+"[p,u]         Fase C: "+
+								String.format("%.4f",  magCorrientePuntoFallaFaseC)
+								+" Ang. "+String.format("%.4f", angCorrientePuntoFallaFaseC)+"° "+"[p,u]"+"\nContribucción de la máquina a la falla: "+
+								"\nFase A: "+String.format("%.2f", conexiongene.get(i).getCorrienteFaseA())+" Ang. "+
+								String.format("%.2f", conexiongene.get(i).getAnguloCorrienteFaseA()) +"° "+"[p,u]"
+										+ "         Fase B: "+String.format("%.2f", conexiongene.get(i).getCorrienteFaseB())+
+										" Ang. "+String.format("%.2f", conexiongene.get(i).getAnguloCorrienteFaseB())+"° "+
+										"[p,u]         "
+										+ "Fase C: "+String.format("%.2f", conexiongene.get(i).getCorrienteFaseC())+
+										" Ang. "+String.format("%.2f", conexiongene.get(i).getAnguloCorrienteFaseC())+"° "+"[p,u]");
 								
 								
 								if(e.isAltDown()) {
+									
+									
 									InfoGeneradores infog= new InfoGeneradores(conexiongene.get(i));
 									Scene dad= new Scene(infog);
 									Stage sta= new Stage();
+									
 									sta.setScene(dad);
 									sta.setTitle("INFORMACIÓN DE GENERADORES");
 									sta.setResizable(false);
 									sta.initModality(Modality.APPLICATION_MODAL);
 									sta.showAndWait();
+									
 									conexiongene.get(i).setImpedanciaAterrizamiento(infog.getImpedanciaAterrizamiento());
 									repaint();
 								}
 								
 								break;
-								
-								
 							}
 							
 						}
@@ -795,24 +937,26 @@ public class PSApplicaation extends Application {
 				}
 				
 				Barras b=getContainingVertex(x,y);
-//				if(e.getButton()==MouseButton.SECONDARY && b!=null) {
-//					barras.remove(b);
-//					removeGeneradorAdyacente(b);
-//					removeAdjacentEdges(b);
-//					removeCargaAdyacente(b);
-//					removerBancoAdyacente(b);
-//					repaint();
-//					
-//					
-//					for(int i=0;i<conexiones1.size();i++) {
-//						conexiones1.get(i).setConexionPrimaria("YN-"+conexiones1.get(i).getBarra1().getNombreBarra());
-//						conexiones1.get(i).setConexionSecundaria("YN-"+conexiones1.get(i).getBarra2().getNombreBarra());
-//					}
-//					
-//					return;
-//				}
 				
-	
+				if(e.getButton()==MouseButton.SECONDARY && b!=null) {
+					
+					barras.remove(b);
+					removeGeneradorAdyacente(b);
+					removeAdjacentEdges(b);
+					removeCargaAdyacente(b);
+					removerBancoAdyacente(b);
+					repaint();
+					
+					
+					for(int i=0;i<conexiones1.size();i++) {
+						
+						conexiones1.get(i).setConexionPrimaria("YN-"+conexiones1.get(i).getBarra1().getNombreBarra());
+						conexiones1.get(i).setConexionSecundaria("YN-"+conexiones1.get(i).getBarra2().getNombreBarra());
+					}
+					
+					return;
+				}
+				
 				
 				if(e.getButton()==MouseButton.MIDDLE) {
 					
@@ -824,68 +968,78 @@ public class PSApplicaation extends Application {
 							InfoImpedanciaFalla infolinea= new  InfoImpedanciaFalla(b.getNombreBarra());
 							Scene dad= new Scene(infolinea);
 							Stage sta= new Stage();
+							
 							sta.setScene(dad);
 							sta.setTitle("INFORMACIÓN IMPEDANCIA FALLA");
 							sta.setResizable(false);
 							sta.initModality(Modality.APPLICATION_MODAL);
 							sta.showAndWait();
+							
 							impedanciaDeFalla=infolinea.getImpedanciaFalla();
 							barraFallada=b;
 							b.setImpedanciaFalla(impedanciaDeFalla);
 							
 							tipoElementoFallado=b.getNombreBarra();
+							
 							double xFalla=b.getXbarra()-5;
 							double yFalla=b.getYbarra()+b.getLargo()/2;
+							
 							coorFalla.add(xFalla);coorFalla.add(yFalla);
 							fallaEnLinea=false;
-						
-							
+					
 							repaint();
 						
 						}
 						
 						else if(tipoElemento instanceof Line) {
+							
 							 boolean bandera=false;
 							
 							
 							for(int i=0;i<conexiones.size();i++) {
+								
 								Point2D puntmedio=conexiones.get(i).getPuntomedio();
 			
 									
 									if(((Line)tipoElemento).contains(puntmedio)) {
+										
 										InfoImpedanciaFallaLinea infolinea= new  InfoImpedanciaFallaLinea(conexiones.get(i).getNombreLinea(),conexiones.get(i));
 										Scene dad= new Scene(infolinea);
 										Stage sta= new Stage();
+										
 										sta.setScene(dad);
 										sta.setTitle("INFORMACIÓN IMPEDANCIA FALLA");
 										sta.setResizable(false);
 										sta.initModality(Modality.APPLICATION_MODAL);
 										sta.showAndWait();
+										
 										impedanciaDeFalla=infolinea.getImpedanciaFalla();
 										conexiones.get(i).setImpedanciafalla(impedanciaDeFalla);
 										tipoElementoFallado=conexiones.get(i).getNombreLinea();
 										lineaFallada=conexiones.get(i);
+										
 										double xFalla= e.getX()-6;
 										double yFalla=e.getY()+8;
+										
 										bandera=true;
+										
 										coorFalla.add(xFalla);coorFalla.add(yFalla);
 										fallaEnLinea=true;
+										
 										repaint();
 										break;
 									}
-								
-									
+
 							}
 							
 							if(!bandera) {
+								
 								JOptionPane.showMessageDialog(null, "La falla no se puede ubicar dentro del transformador");
 							}
 							
 							
 						}
-						
-						
-						
+
 						else if(tipoElemento instanceof Rectangle && ((Rectangle)tipoElemento).getWidth()==30) {
 							
 							for(int i=0;i<conexiones.size();i++) {
@@ -897,19 +1051,24 @@ public class PSApplicaation extends Application {
 									InfoImpedanciaFallaLinea infolinea= new  InfoImpedanciaFallaLinea(conexiones.get(i).getNombreLinea(),conexiones.get(i));
 									Scene dad= new Scene(infolinea);
 									Stage sta= new Stage();
+									
 									sta.setScene(dad);
 									sta.setTitle("INFORMACIÓN IMPEDANCIA FALLA");
 									sta.setResizable(false);
 									sta.initModality(Modality.APPLICATION_MODAL);
 									sta.showAndWait();
+									
 									impedanciaDeFalla=infolinea.getImpedanciaFalla();
 									conexiones.get(i).setImpedanciafalla(impedanciaDeFalla);
 									tipoElementoFallado=conexiones.get(i).getNombreLinea();
 									lineaFallada=conexiones.get(i);
+									
 									double xFalla= e.getX()-6;
 									double yFalla=e.getY()+8;
+									
 									coorFalla.add(xFalla);coorFalla.add(yFalla);
 									fallaEnLinea=true;
+									
 									repaint();
 									break;
 									
@@ -920,6 +1079,7 @@ public class PSApplicaation extends Application {
 						}
 						
 						else if(tipoElemento instanceof Circle&& ((Circle)tipoElemento).getRadius()==15) {
+							
 							JOptionPane.showMessageDialog(null, "La falla no se puede ubicar dentro del transformador");
 						}
 						
@@ -938,10 +1098,8 @@ public class PSApplicaation extends Application {
 //					
 					Circle c= getCirculo(x,y);
 					
-				
-				
+							
 					 if (c!= null && c.getRadius()==14) {
-						 
 						 
 						 
 						Barras b= getContainingVertex(c.getCenterX(),c.getCenterY());
@@ -949,10 +1107,10 @@ public class PSApplicaation extends Application {
 						 
 						 c.setCenterX(x);
 						 c.setCenterY(y);
+						 
 				         b.setXbarra(c.getCenterX()-b.getAncho()/2);
 				         b.setYbarra(c.getCenterY()-b.getLargo()/2);
-				        
-							
+				    
 				         b.setxCoorG(b.getXbarra()+b.getAncho()/2);
 				         b.setyCoorG(b.getYbarra()+b.getLargo()/2);
 				         
@@ -966,8 +1124,6 @@ public class PSApplicaation extends Application {
 						 double xcenter=((Circle)tipoElemento).getCenterX();
 						 double ycenter=((Circle)tipoElemento).getCenterY();
 
-						 
-						 
 						 boolean bandera1=false;
 						 
 //						 moveText=true;
@@ -984,9 +1140,13 @@ public class PSApplicaation extends Application {
 								 
 								 ((Circle)tipoElemento).setCenterX(x);
 								 ((Circle)tipoElemento).setCenterY(y);
+								 
 								 bandera1=true;
+								 
 								 Barras b=cargas.get(i).getBarra();
+								 
 								 b.setCoordenadasCarga(new Point2D(((Circle)tipoElemento).getCenterX(),((Circle)tipoElemento).getCenterY()));
+								 
 								 repaint();
 								 break;
 								 
@@ -994,8 +1154,7 @@ public class PSApplicaation extends Application {
 							 
 							 
 						 }
-						 
-							 
+	
 							 for (int i=0;i<bancos.size();i++) {
 								 
 								 double xcarga=bancos.get(i).getBarra().getCoordenadasBanco().getX();
@@ -1005,21 +1164,25 @@ public class PSApplicaation extends Application {
 									 
 									 ((Circle)tipoElemento).setCenterX(x);
 									 ((Circle)tipoElemento).setCenterY(y);
+									 
 									 bandera1=true;
+									 
 									 Barras b=bancos.get(i).getBarra();
+									 
 									 b.setCoordenadasBanco(new Point2D(((Circle)tipoElemento).getCenterX(),((Circle)tipoElemento).getCenterY()));
+									 
 									 repaint();
 									 break;
 									 
 								 }
 								 
 							 }
-//						
 					 }
 					
 				}
 				
 				else if(((tselected||lselected))&& isLineOn) {
+					
 					endOfLineX=e.getX();
 					endOfLineY=e.getY();
 					repaint();
@@ -1033,10 +1196,13 @@ public class PSApplicaation extends Application {
 		
 		
 		public double longitudLinea(Barras b1,Barras b2) {
-			return Math.sqrt((b1.getXbarra()-b2.getXbarra())*(b1.getXbarra()-b2.getXbarra())+(b1.getYbarra()-b2.getYbarra())*(b1.getYbarra()-b2.getYbarra()));
+			
+			return Math.sqrt((b1.getXbarra()-b2.getXbarra())*(b1.getXbarra()-b2.getXbarra())
+					+(b1.getYbarra()-b2.getYbarra())*(b1.getYbarra()-b2.getYbarra()));
 		}
 		
 		public double longitudLinea(double x1,double y1,double x2,double y2) {
+			
 			return Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
 		}
 		
@@ -1071,6 +1237,7 @@ public class PSApplicaation extends Application {
 			
 			
 			for(int i=0;i<bancos.size();i++) {
+				
 				if(bancos.get(i).getBarra()==b) {
 					bancos.remove(i--);
 				}
@@ -1108,13 +1275,13 @@ public class PSApplicaation extends Application {
 				}
 			
 			}
+			
 		return null;
 			
 	}
 		
 		public Circle getCirculo(double x,double y) {
-			
-			
+		
 			
 			for(Node list:lista) {
 				
@@ -1137,6 +1304,7 @@ public class PSApplicaation extends Application {
 				return true;
 			}
 			else {
+				
 			return false;}
 		}
 		
@@ -1146,6 +1314,7 @@ public class PSApplicaation extends Application {
 			for(int i=0;i<barras.size();i++) {
 				
 				if(dentroBarra(barras.get(i),x,y)) {
+					
 					return barras.get(i);
 				}
 				
@@ -1157,12 +1326,16 @@ public class PSApplicaation extends Application {
 		
 		
 		public boolean dentroBarra(Barras barra,double x,double y) {
+			
 			if(barra.getOrientacion().equals("V")) {
+				
 			if(x>=barra.getXbarra() && x<=barra.getXbarra()+barra.getAncho() && y>=barra.getYbarra()&& y<=barra.getYbarra()+barra.getLargo()) {
+				
 				return true;
 			}
 			
 			else {
+				
 				return false;
 			}
 			
@@ -1170,6 +1343,7 @@ public class PSApplicaation extends Application {
 			else {
 				
 				if(x>=barra.getXbarra() && x<=barra.getXbarra()+barra.getAncho() && y>=barra.getYbarra()&& y<=barra.getYbarra()+barra.getLargo()) {
+					
 					return true;
 				}
 				
@@ -1183,6 +1357,7 @@ public class PSApplicaation extends Application {
 		}
 		
 		public void repaint() {
+			
 			this.getChildren().clear();
 			dibujarBarra();
 			dibujarLineas();
@@ -1214,10 +1389,12 @@ public class PSApplicaation extends Application {
 		public boolean obtenerDistancia(double x1,double y1,double x2,double y2) {
 			
 			if(Math.abs(x1-x2)< 10+5 && Math.abs(y1-y2)<70+10) {
+				
 				return true;
 				
 			}
 			else {
+				
 				return false;
 			}
 		
@@ -1247,6 +1424,7 @@ public class PSApplicaation extends Application {
 			
 			Object elemento=objetosCreados.pollLast();
 			if (elemento!=null)
+				
 			restablecerElementos.add(elemento);
 			
 			if(elemento instanceof Barras && elemento!=null) {
@@ -1257,7 +1435,8 @@ public class PSApplicaation extends Application {
 				
 			}
 			
-			else if(elemento instanceof Lineas && !(elemento instanceof Transformador)&& elemento!=null) {
+			else if(elemento instanceof Lineas && !(elemento instanceof Transformador)
+					&& elemento!=null&&conexiones.size()>0) {
 				
 				
 				conexiones.remove(conexiones.size()-1);
@@ -1265,26 +1444,31 @@ public class PSApplicaation extends Application {
 				repaint();
 				
 			}
-			else if(elemento instanceof Generadores && elemento!=null) {
+			else if(elemento instanceof Generadores && elemento!=null&&conexiongene.size()>0) {
+				
 				conexiongene.remove(conexiongene.size()-1);
 				corGenerador.clear();
 				repaint();
 				
 			}
 			
-			else if((elemento instanceof Transformador) &&(elemento instanceof Lineas) && elemento!=null) {
+			else if((elemento instanceof Transformador) &&(elemento instanceof Lineas) &&
+					elemento!=null&&conexiones1.size()>0) {
+				
 				conexiones1.remove(conexiones1.size()-1);
 				distanciasLineas.clear();
 				repaint();
 			}
 			
-			else if(elemento instanceof Carga && elemento!=null) {
+			else if(elemento instanceof Carga && elemento!=null&&cargas.size()>0) {
+				
 				cargas.remove(cargas.size()-1);
 				corCarga.clear();
 				repaint();
 			}
 			
-			else if(elemento instanceof Bancos && elemento!=null) {
+			else if(elemento instanceof Bancos && elemento!=null&&bancos.size()>0) {
+				
 				bancos.remove(bancos.size()-1);
 				corBanco.clear();
 				repaint();
@@ -1294,67 +1478,94 @@ public class PSApplicaation extends Application {
 			
 		}
 		
-		public void reestablecerElementos() {
-			
-			Object elemento=restablecerElementos.pollLast();
-			if(elemento!=null)
-			objetosCreados.add(elemento);
-			
-			if(elemento instanceof Barras && elemento!=null) {
-				
-				Barras b=((Barras)elemento);
-				barras.add(b);
-				repaint();
-				
-			}
-			
-			else if(elemento instanceof Lineas && !(elemento instanceof Transformador)&& elemento!=null) {
-				
-				Lineas l=((Lineas)elemento);
-				
-				
-				conexiones.add(l);
-				distanciasLineas.clear();
-				repaint();
-				
-			}
-			else if(elemento instanceof Generadores && elemento!=null) {
-				
-				Generadores g=((Generadores)elemento);
-				conexiongene.add(g);
-				corGenerador.clear();
-				repaint();
-				
-			}
-			
-			else if((elemento instanceof Transformador) &&(elemento instanceof Lineas) && elemento!=null) {
-				
-				Transformador t= ((Transformador)elemento);
-				conexiones1.add(t);
-				distanciasLineas.clear();
-				repaint();
-			}
-			
-			else if(elemento instanceof Carga && elemento!=null) {
-				Carga c= ((Carga)elemento);
-				cargas.add(c);
-				corCarga.clear();
-				repaint();
-			}
-			
-			else if(elemento instanceof Bancos && elemento!=null) {
-				Bancos b=((Bancos)elemento);
-				bancos.add(b);
-				corBanco.clear();
-				repaint();
-				
-			}
-			
-			
-			
-			
-			
-		}
+//		public void reestablecerElementos() {
+//			
+//			Object elemento=restablecerElementos.pollLast();
+//			if(elemento!=null)
+//			objetosCreados.add(elemento);
+//			
+//			if(elemento instanceof Barras && elemento!=null) {
+//				
+//				Barras b=((Barras)elemento);
+//				barras.add(b);
+//				repaint();
+//				
+//			}
+//			
+//			else if(elemento instanceof Lineas && !(elemento instanceof Transformador)&& elemento!=null) {
+//				Barras b1=((Lineas)elemento).getBarra1();
+//				Barras b2=((Lineas)elemento).getBarra2();
+//				
+//				if(conexiones.size()==0) {
+//					Lineas ll=((Lineas)elemento);
+//					
+//					
+//					conexiones.add(ll);
+//					distanciasLineas.clear();
+//					repaint();
+//				}
+//				
+//				else {
+//				
+//				for(int i=0;i<conexiones.size();i++) {
+//					
+//										
+//					if(conexiones.get(i).getBarra1()==b1&&conexiones.get(i).getBarra2()==b2) {
+//						break;
+//					}
+//					else {
+//						
+//						Lineas ll=((Lineas)elemento);
+//						
+//						
+//						conexiones.add(ll);
+//						distanciasLineas.clear();
+//						repaint();
+//					}
+//				}
+//				
+//				}
+//				
+//			
+//				
+//			}
+//			else if(elemento instanceof Generadores && elemento!=null) {
+//				
+//				Generadores g=((Generadores)elemento);
+//				conexiongene.add(g);
+//				corGenerador.clear();
+//				repaint();
+//				
+//			}
+//			
+//			else if((elemento instanceof Transformador) &&(elemento instanceof Lineas) && elemento!=null) {
+//				
+//				Transformador t= ((Transformador)elemento);
+//				conexiones1.add(t);
+//				distanciasLineas.clear();
+//				repaint();
+//			}
+//			
+//			else if(elemento instanceof Carga && elemento!=null) {
+//				Carga c= ((Carga)elemento);
+//				cargas.add(c);
+//				corCarga.clear();
+//				repaint();
+//			}
+//			
+//			else if(elemento instanceof Bancos && elemento!=null) {
+//				Bancos b=((Bancos)elemento);
+//				bancos.add(b);
+//				corBanco.clear();
+//				repaint();
+//				
+//			}
+//			
+//			
+//			
+//			
+//			
+//		}
 		
 		public void dibujarBarra() {
 			
@@ -1366,6 +1577,7 @@ public class PSApplicaation extends Application {
 					
 					barras.get(i).setNombreBarra(nombreBarra+(i));
 					posBarra.add(barras.get(i).getXbarra());
+					
 					Collections.sort(posBarra);
 					Rectangle barra= new Rectangle();
 					
@@ -1373,8 +1585,10 @@ public class PSApplicaation extends Application {
 					barra.setY(barras.get(i).getYbarra());
 					barra.setWidth(barras.get(i).getAncho());
 					barra.setHeight(barras.get(i).getLargo());
+					
 					double xMedio=barras.get(i).getXbarra()+barras.get(i).getAncho()/2;
 					double yMedio=barras.get(i).getYbarra()+barras.get(i).getLargo()/2;
+					
 					barras.get(i).setPuntoMedioBarra(new Point2D(xMedio,yMedio));
 //					barra.setRotate(-90);
 					
@@ -1383,6 +1597,7 @@ public class PSApplicaation extends Application {
 					circulo.setCenterX(barras.get(i).getXbarra()+barras.get(i).getAncho()/2);
 					circulo.setCenterY(barras.get(i).getYbarra()+barras.get(i).getLargo()/2);
 					circulo.setVisible(false);
+					
 					Text nbarra= new Text(barras.get(i).getNombreBarra());
 					nbarra.setStroke(Color.ORANGE);nbarra.setStrokeWidth(1);
 				
@@ -1405,6 +1620,7 @@ public class PSApplicaation extends Application {
 					
 					double xMedio=barras.get(i).getXbarra()+barras.get(i).getAncho()/2;
 					double yMedio=barras.get(i).getYbarra()+barras.get(i).getLargo()/2;
+					
 					barras.get(i).setPuntoMedioBarra(new Point2D(xMedio,yMedio));
 						
 					Rectangle barra= new Rectangle();
@@ -1413,11 +1629,13 @@ public class PSApplicaation extends Application {
 					barra.setY(barras.get(i).getYbarra());
 					barra.setWidth(barras.get(i).getAncho());
 					barra.setHeight(barras.get(i).getLargo());
+					
 					Circle circulo= new Circle();
 					circulo.setRadius(radioCirculo);
 					circulo.setCenterX(barras.get(i).getXbarra()+barras.get(i).getAncho()/2);
 					circulo.setCenterY(barras.get(i).getYbarra()+barras.get(i).getLargo()/2);
 					circulo.setVisible(false);
+					
 					Text nbarra= new Text(barras.get(i).getNombreBarra());
 					nbarra.setStroke(Color.ORANGE);nbarra.setStrokeWidth(1);
 					
@@ -1433,7 +1651,9 @@ public class PSApplicaation extends Application {
 		}
 		
 		public void dibujarFalla() {
+			
 			if(coorFalla.size()>0) {
+				
 			Text ubicarFalla= new Text("X");
 			ubicarFalla.setFont(Font.font("Courier", FontWeight.BOLD,FontPosture.ITALIC, 25));
 			
@@ -1449,6 +1669,7 @@ public class PSApplicaation extends Application {
 		public void dibujarCarga() {
 			
 			for(int i=0;i<cargas.size();i++) {
+				
 				corCarga.add(cargas.get(i).getBarra().getXbarra());
 				cargas.get(i).setNombreCarga(nombreCarga+(i+1));
 				
@@ -1465,6 +1686,7 @@ public class PSApplicaation extends Application {
 		public void dibujarBanco() {
 			
 			for(int i=0;i<bancos.size();i++) {
+				
 				corBanco.add(bancos.get(i).getBarra().getXbarra());
 				bancos.get(i).setNombreCarga(nombreBanco+(i+1));
 				
@@ -1489,23 +1711,29 @@ public class PSApplicaation extends Application {
 					Line lineg= new Line(conexiongene.get(i).getBarra().getxCoorG(),
 							conexiongene.get(i).getBarra().getyCoorG(),conexiongene.get(i).getBarra().getxCoorG()+20,
 							conexiongene.get(i).getBarra().getyCoorG());
+					
 					lineg.setStrokeWidth(4);
+					
 					Circle cirg= new Circle();
 					cirg.setRadius(20);
 					cirg.setCenterX(lineg.getEndX()+20);
 					cirg.setCenterY(lineg.getEndY());
 					cirg.setFill(Color.WHITE);
 					cirg.setStroke(Color.BLACK);
+					
 					Arc arc1= new Arc(cirg.getCenterX()-9,cirg.getCenterY(),9,9,0,180);
 					Arc arc2= new Arc(cirg.getCenterX()+9,cirg.getCenterY(),9,9,180,180);
 					Text nombreg= new Text(conexiongene.get(i).getNombreGenerador());
+					
 					nombreg.setFill(Color.BLUE);
 					nombreg.setX(cirg.getCenterX()-3);
 					nombreg.setY(cirg.getCenterY()-25);
+					
 					arc1.setFill(Color.WHITE);
 					arc1.setStroke(Color.BLACK);
 					arc2.setFill(Color.WHITE);
 					arc2.setStroke(Color.BLACK);
+					
 					this.getChildren().addAll(lineg,cirg,arc1,arc2,nombreg);
 				
 					
@@ -1515,46 +1743,61 @@ public class PSApplicaation extends Application {
 				
 				Line lineg= new Line(conexiongene.get(i).getBarra().getxCoorG(),conexiongene.get(i).getBarra().getyCoorG(),conexiongene.get(i).getBarra().getxCoorG()-10,
 						conexiongene.get(i).getBarra().getyCoorG());
+				
 				lineg.setStrokeWidth(4);
+				
 				Circle cirg= new Circle();
 				cirg.setRadius(20);
 				cirg.setCenterX(lineg.getEndX()-20);
 				cirg.setCenterY(lineg.getEndY());
 				cirg.setFill(Color.WHITE);
 				cirg.setStroke(Color.BLACK);
+				
 				Arc arc1= new Arc(cirg.getCenterX()-9,cirg.getCenterY(),9,9,0,180);
 				Arc arc2= new Arc(cirg.getCenterX()+9,cirg.getCenterY(),9,9,180,180);
+				
 				Text nombreg= new Text(conexiongene.get(i).getNombreGenerador());
 				nombreg.setFill(Color.BLUE);
 				nombreg.setX(cirg.getCenterX()-3);
 				nombreg.setY(cirg.getCenterY()-25);
+				
 				arc1.setFill(Color.WHITE);
 				arc1.setStroke(Color.BLACK);
 				arc2.setFill(Color.WHITE);
 				arc2.setStroke(Color.BLACK);
+				
 				this.getChildren().addAll(lineg,cirg,arc1,arc2,nombreg);
 				}
 				
 				
 				else if(conexiongene.get(i).getOrientacion().equals(Generadores.ARRIBA)) {
 					
-					Line lineg= new Line(conexiongene.get(i).getBarra().getXbarra()+conexiongene.get(i).getBarra().getAncho()/2,conexiongene.get(i).getBarra().getYbarra()+conexiongene.get(i).getBarra().getLargo()/2,conexiongene.get(i).getBarra().getXbarra()+conexiongene.get(i).getBarra().getAncho()/2,
+					Line lineg= new Line(conexiongene.get(i).getBarra().getXbarra()+conexiongene.get(i).getBarra().getAncho()/2,
+							conexiongene.get(i).getBarra().getYbarra()+conexiongene.get(i).getBarra().getLargo()/2,
+							conexiongene.get(i).getBarra().getXbarra()+conexiongene.get(i).getBarra().getAncho()/2,
 							(conexiongene.get(i).getBarra().getYbarra()+conexiongene.get(i).getBarra().getLargo()/2)-10);
+					
 					lineg.setStrokeWidth(4);
+					
 					Circle cirg= new Circle();
 					cirg.setRadius(20);
 					cirg.setCenterX(lineg.getEndX());
 					cirg.setCenterY(lineg.getEndY()-20);
+					
 					conexiongene.get(i).setXCenter(lineg.getEndX());
 					conexiongene.get(i).setYCenter(lineg.getEndY()-20);
+					
 					cirg.setFill(Color.WHITE);
 					cirg.setStroke(Color.BLACK);
+					
 					Arc arc1= new Arc(cirg.getCenterX()-9,cirg.getCenterY(),9,9,0,180);
 					Arc arc2= new Arc(cirg.getCenterX()+9,cirg.getCenterY(),9,9,180,180);
+					
 					Text nombreg= new Text(conexiongene.get(i).getNombreGenerador());
 					nombreg.setFill(Color.BLUE);
 					nombreg.setX(cirg.getCenterX()-3);
 					nombreg.setY(cirg.getCenterY()-25);
+					
 					arc1.setFill(Color.WHITE);
 					arc1.setStroke(Color.BLACK);
 					arc2.setFill(Color.WHITE);
@@ -1566,27 +1809,38 @@ public class PSApplicaation extends Application {
 				
 				else if(conexiongene.get(i).getOrientacion().equals(Generadores.ABAJO)) {
 					
-					Line lineg= new Line(conexiongene.get(i).getBarra().getXbarra()+conexiongene.get(i).getBarra().getAncho()/2,conexiongene.get(i).getBarra().getYbarra()+conexiongene.get(i).getBarra().getLargo()/2,conexiongene.get(i).getBarra().getXbarra()+conexiongene.get(i).getBarra().getAncho()/2,
+					Line lineg= new Line(conexiongene.get(i).getBarra().getXbarra()+conexiongene.get(i).getBarra().getAncho()/2,
+							conexiongene.get(i).getBarra().getYbarra()+conexiongene.get(i).getBarra().getLargo()/2,
+							conexiongene.get(i).getBarra().getXbarra()+conexiongene.get(i).getBarra().getAncho()/2,
 							(conexiongene.get(i).getBarra().getYbarra()+conexiongene.get(i).getBarra().getLargo()/2)+10);
+					
 					lineg.setStrokeWidth(4);
 					Circle cirg= new Circle();
+					
 					cirg.setRadius(20);
 					cirg.setCenterX(lineg.getEndX());
 					cirg.setCenterY(lineg.getEndY()+20);
+					
 					conexiongene.get(i).setXCenter(lineg.getEndX());
 					conexiongene.get(i).setYCenter(lineg.getEndY()+20);
+					
 					cirg.setFill(Color.WHITE);
 					cirg.setStroke(Color.BLACK);
+					
 					Arc arc1= new Arc(cirg.getCenterX()-9,cirg.getCenterY(),9,9,0,180);
 					Arc arc2= new Arc(cirg.getCenterX()+9,cirg.getCenterY(),9,9,180,180);
+					
 					Text nombreg= new Text(conexiongene.get(i).getNombreGenerador());
+					
 					nombreg.setFill(Color.BLUE);
 					nombreg.setX(cirg.getCenterX()-3);
 					nombreg.setY(cirg.getCenterY()+30);
+					
 					arc1.setFill(Color.WHITE);
 					arc1.setStroke(Color.BLACK);
 					arc2.setFill(Color.WHITE);
 					arc2.setStroke(Color.BLACK);
+					
 					this.getChildren().addAll(lineg,cirg,arc1,arc2,nombreg);
 					
 					
@@ -1596,6 +1850,7 @@ public class PSApplicaation extends Application {
 		}
 		
 		public void dibujarLineas() {
+			
 			  if (isLineOn && lselected) {
 				  
 				  Line linea= new Line(startB.getXbarra()+startB.getAncho()/2, startB.getYbarra()+startB.getLargo()/2, endOfLineX, endOfLineY);
@@ -1606,6 +1861,7 @@ public class PSApplicaation extends Application {
 			  
 			  }
 			  else if(isLineOn && tselected) {
+				  
 				  Line linea= new Line(startB.getXbarra()+startB.getAncho()/2, startB.getYbarra()+startB.getLargo()/2, endOfLineX, endOfLineY);
 				  linea.setStroke(Color.RED);
 				  linea.setStrokeWidth(2);
@@ -1616,18 +1872,25 @@ public class PSApplicaation extends Application {
 			  for(int i=0;i<conexiones.size();i++) {
 				   
 				  
-				  Line linea= new Line(conexiones.get(i).getBarra1().getPuntoMedioBarra().getX(),conexiones.get(i).getBarra1().getPuntoMedioBarra().getY(),
+				  Line linea= new Line(conexiones.get(i).getBarra1().getPuntoMedioBarra().getX(),
+						  conexiones.get(i).getBarra1().getPuntoMedioBarra().getY(),
 						  conexiones.get(i).getBarra2().getPuntoMedioBarra().getX(),
 						  conexiones.get(i).getBarra2().getPuntoMedioBarra().getY());
+				  
 				  linea.setFill(Color.RED);
 				  
 				  double pe= longitudLinea(linea.getStartX(),linea.getStartY(),linea.getEndX(),linea.getEndY());
 				  distanciasLineas.add(pe);
 				 
 				  conexiones.get(i).setNombreLinea(nombreLinea+(i+1));
-				  double puntoMedioX=Math.abs(conexiones.get(i).getBarra1().getPuntoMedioBarra().getX()+ conexiones.get(i).getBarra2().getPuntoMedioBarra().getX())/2;
-				  double puntoMedioY=Math.abs(conexiones.get(i).getBarra1().getPuntoMedioBarra().getY()+ conexiones.get(i).getBarra2().getPuntoMedioBarra().getY())/2;
+				  double puntoMedioX=Math.abs(conexiones.get(i).getBarra1().getPuntoMedioBarra().getX()+ 
+						  conexiones.get(i).getBarra2().getPuntoMedioBarra().getX())/2;
+				  
+				  double puntoMedioY=Math.abs(conexiones.get(i).getBarra1().getPuntoMedioBarra().getY()+
+						  conexiones.get(i).getBarra2().getPuntoMedioBarra().getY())/2;
+				  
 				  conexiones.get(i).setPuntomedio(new Point2D(puntoMedioX,puntoMedioY));
+				  
 				  Rectangle rec= new Rectangle();
 				  rec.setX(puntoMedioX-15);
 				  rec.setY(puntoMedioY-15);
@@ -1645,8 +1908,7 @@ public class PSApplicaation extends Application {
 				  
 				  textLinea.setX(puntoMedioX-3);
 				  textLinea.setY(puntoMedioY+2);
-				
-			
+	
 				  getChildren().addAll(linea,rec,textLinea);
 				 
 			  }
@@ -1657,16 +1919,22 @@ public class PSApplicaation extends Application {
 				   
 				  
 
-				  Line linea= new Line(conexiones1.get(i).getBarra1().getPuntoMedioBarra().getX(),conexiones1.get(i).getBarra1().getPuntoMedioBarra().getY(),
+				  Line linea= new Line(conexiones1.get(i).getBarra1().getPuntoMedioBarra().getX(),
+						  conexiones1.get(i).getBarra1().getPuntoMedioBarra().getY(),
 						  conexiones1.get(i).getBarra2().getPuntoMedioBarra().getX(),
 						  conexiones1.get(i).getBarra2().getPuntoMedioBarra().getY());
+				  
 				  double pe= longitudLinea(linea.getStartX(),linea.getStartY(),linea.getEndX(),linea.getEndY());
 				  distanciasLineas.add(pe);
 				  
 				  
 				  conexiones1.get(i).setNombreLinea(nombreTrafo+(i+1));
-				  double puntoMedioX=Math.abs(conexiones1.get(i).getBarra1().getPuntoMedioBarra().getX()+ conexiones1.get(i).getBarra2().getPuntoMedioBarra().getX())/2;
-				  double puntoMedioY=Math.abs(conexiones1.get(i).getBarra1().getPuntoMedioBarra().getY()+ conexiones1.get(i).getBarra2().getPuntoMedioBarra().getY())/2;
+				  double puntoMedioX=Math.abs(conexiones1.get(i).getBarra1().getPuntoMedioBarra().getX()+ 
+						  conexiones1.get(i).getBarra2().getPuntoMedioBarra().getX())/2;
+				  
+				  double puntoMedioY=Math.abs(conexiones1.get(i).getBarra1().getPuntoMedioBarra().getY()+
+						  conexiones1.get(i).getBarra2().getPuntoMedioBarra().getY())/2;
+				  
 				  conexiones1.get(i).setPuntoMedio(new Point2D(puntoMedioX,puntoMedioY));
 				  Circle cc1= new Circle();
 				  Circle cc2= new Circle();
@@ -1684,6 +1952,7 @@ public class PSApplicaation extends Application {
 				  
 				  linea.setStroke(Color.BLACK);
 				  linea.setStrokeWidth(4);
+				  
 				  getChildren().add(linea);
 				  this.getChildren().addAll(cc1,cc2);
 				  
@@ -1754,11 +2023,11 @@ public class PSApplicaation extends Application {
 	 		
 	 		int x= barras.indexOf(conexiones1.get(i).getBarra1());
 	    	int y= barras.indexOf(conexiones1.get(i).getBarra2());
+	    	
 	    	double z1=conexiones1.get(i).getimpedanciaLineaZ1();
 	    	double z2=conexiones1.get(i).getimpedanciaLineaZ2();
 	    	
-	    	
-	    	
+
 	    	bordes1.add(new WeightEdeges(x,y,z1));
 	    	bordes1.add(new WeightEdeges(y,x,z1));
 	    	
@@ -1803,10 +2072,14 @@ public class PSApplicaation extends Application {
        	
     	
     	if(tipoElementoFallado.charAt(0)=='B') {
-    		FallaLineaALinea fallalinealinea= new FallaLineaALinea(zBarraSecuencia1, zBarraSecuencia2, barras, conexiones, conexiones1, conexiongene, barraFallada,borde1);
+    		
+    		FallaLineaALinea fallalinealinea= new FallaLineaALinea(zBarraSecuencia1, zBarraSecuencia2, barras, 
+    				conexiones, conexiones1, conexiongene, barraFallada,borde1);
+    		
     		angCorrientePuntoFallaFaseA=barraFallada.getAngCorrientePuntoFallaFaseA();
 			angCorrientePuntoFallaFaseB=barraFallada.getAngCorrientePuntoFallaFaseB();
 			angCorrientePuntoFallaFaseC=barraFallada.getAngCorrientePuntoFallaFaseC();
+			
 			magCorrientePuntoFallaFaseA=barraFallada.getMagcorrientePuntoFallaFaseA();
 			magCorrientePuntoFallaFaseB=barraFallada.getMagcorrientePuntoFallaFaseB();
 			magCorrientePuntoFallaFaseC=barraFallada.getMagcorrientePuntoFallaFaseC();
@@ -1816,11 +2089,13 @@ public class PSApplicaation extends Application {
     	
     	else if(tipoElementoFallado.charAt(0)=='L') {
     		
-    		FallaLineaALineaLinea fallaLineaALineaLinea= new FallaLineaALineaLinea(zBarraSecuencia1, zBarraSecuencia2, barras, conexiones, conexiones1, conexiongene, lineaFallada);
+    		FallaLineaALineaLinea fallaLineaALineaLinea= new FallaLineaALineaLinea(zBarraSecuencia1, zBarraSecuencia2, barras, 
+    				conexiones, conexiones1, conexiongene, lineaFallada);
     		
     		angCorrientePuntoFallaFaseA= lineaFallada.getAngCorrientePuntoFallaFaseA();
 			angCorrientePuntoFallaFaseB= lineaFallada.getAngCorrientePuntoFallaFaseB();
 			angCorrientePuntoFallaFaseC= lineaFallada.getAngCorrientePuntoFallaFaseC();
+			
 			magCorrientePuntoFallaFaseA= lineaFallada.getMagcorrientePuntoFallaFaseA();
 			magCorrientePuntoFallaFaseB= lineaFallada.getMagcorrientePuntoFallaFaseB();
 			magCorrientePuntoFallaFaseC= lineaFallada.getMagcorrientePuntoFallaFaseC();
@@ -1850,6 +2125,7 @@ public class PSApplicaation extends Application {
 		 		
 		 		int x= barras.indexOf(conexiones1.get(i).getBarra1());
 		    	int y= barras.indexOf(conexiones1.get(i).getBarra2());
+		    	
 		    	double z1=conexiones1.get(i).getimpedanciaLineaZ1();
 		    	
 		    	bordes1.add(new WeightEdeges(x,y,z1));
@@ -1873,25 +2149,23 @@ public class PSApplicaation extends Application {
 			
 			List<List<Edges>> borde1= grafo1.getConexiones();
 			
-		
-			
 
 	    	double [][] yBarraSecuencia1= obtenerMatrizAdyacencia(borde1);
 
     	
 	    	double [][] zBarraSecuencia1= Zbarra.getZbarra(yBarraSecuencia1);
 	    	
-			
-			
-			
+
 			
 			if(tipoElementoFallado.charAt(0)=='B') {
 				
-				FallaTrifasica calculoFalla= new FallaTrifasica(zBarraSecuencia1, tipoElementoFallado,barras,conexiones,conexiones1,conexiongene);
+				FallaTrifasica calculoFalla= new FallaTrifasica(zBarraSecuencia1, tipoElementoFallado,barras,
+						conexiones,conexiones1,conexiongene);
 				
 				angCorrientePuntoFallaFaseA=barraFallada.getAngCorrientePuntoFallaFaseA();
 				angCorrientePuntoFallaFaseB=barraFallada.getAngCorrientePuntoFallaFaseB();
 				angCorrientePuntoFallaFaseC=barraFallada.getAngCorrientePuntoFallaFaseC();
+				
 				magCorrientePuntoFallaFaseA=barraFallada.getMagcorrientePuntoFallaFaseA();
 				magCorrientePuntoFallaFaseB=barraFallada.getMagcorrientePuntoFallaFaseB();
 				magCorrientePuntoFallaFaseC=barraFallada.getMagcorrientePuntoFallaFaseC();
@@ -1900,11 +2174,13 @@ public class PSApplicaation extends Application {
 			else if(tipoElementoFallado.charAt(0)=='L') {
 			
 				
-				FallaTrifasicaLinea fallatrifasicalinea= new FallaTrifasicaLinea(zBarraSecuencia1, lineaFallada, barras, conexiones, conexiones1,conexiongene);
+				FallaTrifasicaLinea fallatrifasicalinea= new FallaTrifasicaLinea(zBarraSecuencia1, lineaFallada, barras, 
+						conexiones, conexiones1,conexiongene);
 				
 				angCorrientePuntoFallaFaseA= lineaFallada.getAngCorrientePuntoFallaFaseA();
 				angCorrientePuntoFallaFaseB= lineaFallada.getAngCorrientePuntoFallaFaseB();
 				angCorrientePuntoFallaFaseC= lineaFallada.getAngCorrientePuntoFallaFaseC();
+				
 				magCorrientePuntoFallaFaseA= lineaFallada.getMagcorrientePuntoFallaFaseA();
 				magCorrientePuntoFallaFaseB= lineaFallada.getMagcorrientePuntoFallaFaseB();
 				magCorrientePuntoFallaFaseC= lineaFallada.getMagcorrientePuntoFallaFaseC();
@@ -1917,10 +2193,12 @@ public class PSApplicaation extends Application {
 			List<WeightEdeges > bordes1= new ArrayList<>();
 		 	List<WeightEdeges > bordes2= new ArrayList<>();
 		 	List<WeightEdeges > bordes0= new ArrayList<>();
+		 	
  			for(int i=0;i<conexiones.size();i++) {
 		 		
 		 		int x= barras.indexOf(conexiones.get(i).getBarra1());
 		    	int y= barras.indexOf(conexiones.get(i).getBarra2());
+		    	
 		    	double z1=conexiones.get(i).getimpedanciaLineaZ1();
 		    	double z2=conexiones.get(i).getimpedanciaLineaZ2();
 		    	double z0=conexiones.get(i).getimpedanciaLineaZ0();
@@ -1942,6 +2220,7 @@ public class PSApplicaation extends Application {
 		 		
 		 		int x= barras.indexOf(conexiones1.get(i).getBarra1());
 		    	int y= barras.indexOf(conexiones1.get(i).getBarra2());
+		    	
 		    	double z1=conexiones1.get(i).getimpedanciaLineaZ1();
 		    	double z2=conexiones1.get(i).getimpedanciaLineaZ2();
 		    	double z0=conexiones1.get(i).getimpedanciaLineaZ0();
@@ -1953,34 +2232,48 @@ public class PSApplicaation extends Application {
 		    	bordes2.add(new WeightEdeges(x,y,z2));
 		    	bordes2.add(new WeightEdeges(y,x,z2));
 
-		    	if(conexiones1.get(i).getConexionPrimaria().contains("YN")&&conexiones1.get(i).getConexionSecundaria().contains("YN")) {
+		    	if(conexiones1.get(i).getConexionPrimaria().contains("YN")&&
+		    			conexiones1.get(i).getConexionSecundaria().contains("YN")) {
 		    		
-		    		z0+=conexiones1.get(i).getImpedanciaAterrizamientoPrimaria()+conexiones1.get(i).getImpedanciaAterrizamientoSecundaria();
+		    		z0+=conexiones1.get(i).getImpedanciaAterrizamientoPrimaria()+
+		    				conexiones1.get(i).getImpedanciaAterrizamientoSecundaria();
 		    		
 		    	}
-		    	else if(conexiones1.get(i).getConexionPrimaria().contains("Y-")&&conexiones1.get(i).getConexionSecundaria().contains("Y-")) {
+		    	else if(conexiones1.get(i).getConexionPrimaria().contains("Y-")
+		    			&&conexiones1.get(i).getConexionSecundaria().contains("Y-")) {
 		    	
 		    		z0+=10000000;
 		    		
 		    	}
-		    	else if((conexiones1.get(i).getConexionPrimaria().contains("Y-")&&conexiones1.get(i).getConexionSecundaria().contains("YN"))||
-		    			(conexiones1.get(i).getConexionPrimaria().contains("YN")&&conexiones1.get(i).getConexionSecundaria().contains("Y-"))) {
-		    		z0+=10000000;
-		    	}
-		    	else if(conexiones1.get(i).getConexionPrimaria().contains("DELTA")&&conexiones1.get(i).getConexionSecundaria().contains("DELTA")) {
+		    	
+		    	else if((conexiones1.get(i).getConexionPrimaria().contains("Y-")
+		    			&&conexiones1.get(i).getConexionSecundaria().contains("YN"))||
+		    			(conexiones1.get(i).getConexionPrimaria().contains("YN")
+		    					&&conexiones1.get(i).getConexionSecundaria().contains("Y-"))) {
 		    		
 		    		z0+=10000000;
+		    	}
+		    	
+		    	else if(conexiones1.get(i).getConexionPrimaria().contains("DELTA")
+		    			&&conexiones1.get(i).getConexionSecundaria().contains("DELTA")) {
+		    		
+		    		z0+=10000000;
 		    		
 		    	}
-		    	else if((conexiones1.get(i).getConexionPrimaria().contains("Y-")&&conexiones1.get(i).getConexionSecundaria().contains("DELTA"))||
-		    			(conexiones1.get(i).getConexionPrimaria().contains("DELTA")&&conexiones1.get(i).getConexionSecundaria().contains("Y-"))) {
+		    	else if((conexiones1.get(i).getConexionPrimaria().contains("Y-")
+		    			&&conexiones1.get(i).getConexionSecundaria().contains("DELTA"))||
+		    			(conexiones1.get(i).getConexionPrimaria().contains("DELTA")
+		    					&&conexiones1.get(i).getConexionSecundaria().contains("Y-"))) {
+		    		
 		    		z0+=10000000;
 		    	}
-		    	else if((conexiones1.get(i).getConexionPrimaria().contains("YN")&&conexiones1.get(i).getConexionSecundaria().contains("DELTA"))||
-		    			(conexiones1.get(i).getConexionPrimaria().contains("DELTA")&&conexiones1.get(i).getConexionSecundaria().contains("YN"))) {
+		    	
+		    	else if((conexiones1.get(i).getConexionPrimaria().contains("YN")
+		    			&&conexiones1.get(i).getConexionSecundaria().contains("DELTA"))||
+		    			(conexiones1.get(i).getConexionPrimaria().contains("DELTA")
+		    					&&conexiones1.get(i).getConexionSecundaria().contains("YN"))) {
 		    		
-		    		
-		    		
+
 		    		if(conexiones1.get(i).getConexionPrimaria().contains("YN")) {
 		    			
 		    			z0+=conexiones1.get(i).getImpedanciaAterrizamientoPrimaria();
@@ -1992,6 +2285,7 @@ public class PSApplicaation extends Application {
 		    			
 		    		}
 		    		else if(conexiones1.get(i).getConexionSecundaria().contains("YN")) {
+		    			
 		    			String xx=Character.toString(conexiones1.get(i).getConexionSecundaria().charAt(conexiones1.get(i).getConexionSecundaria().length()-1));
 		    			z0+=conexiones1.get(i).getImpedanciaAterrizamientoSecundaria();
 		    			x= Integer.parseInt(xx);
@@ -2043,7 +2337,8 @@ public class PSApplicaation extends Application {
 	    	grafo2= new WeightedGraph<>(barras,bordes2);
 	    	grafo0= new WeightedGraph<>(barras,bordes0);
 //	    	
-	    	List<List<Edges>> borde1= grafo1.getConexiones();List<List<Edges>> borde2= grafo2.getConexiones();
+	    	List<List<Edges>> borde1= grafo1.getConexiones();
+	    	List<List<Edges>> borde2= grafo2.getConexiones();
 	    	List<List<Edges>> borde0= grafo0.getConexiones();
 	   
 	  
@@ -2058,10 +2353,13 @@ public class PSApplicaation extends Application {
 	    	if(monofasica) {
 	        	if(tipoElementoFallado.charAt(0)=='B') {
 		    		
-		    		FallaAsimetricas calculoFallaAsimetrica= new FallaAsimetricas(zBarraSecuencia0,zBarraSecuencia1,zBarraSecuencia2,barras,conexiones,conexiones1,barraFallada,conexiongene);
+		    		FallaAsimetricas calculoFallaAsimetrica= new FallaAsimetricas(zBarraSecuencia0,zBarraSecuencia1,zBarraSecuencia2,
+		    				barras,conexiones,conexiones1,barraFallada,conexiongene);
+		    		
 		    		angCorrientePuntoFallaFaseA=barraFallada.getAngCorrientePuntoFallaFaseA();
 					angCorrientePuntoFallaFaseB=barraFallada.getAngCorrientePuntoFallaFaseB();
 					angCorrientePuntoFallaFaseC=barraFallada.getAngCorrientePuntoFallaFaseC();
+					
 					magCorrientePuntoFallaFaseA=barraFallada.getMagcorrientePuntoFallaFaseA();
 					magCorrientePuntoFallaFaseB=barraFallada.getMagcorrientePuntoFallaFaseB();
 					magCorrientePuntoFallaFaseC=barraFallada.getMagcorrientePuntoFallaFaseC();
@@ -2071,11 +2369,13 @@ public class PSApplicaation extends Application {
 		    	else if(tipoElementoFallado.charAt(0)=='L') {
 		    		
 		    		
-		    		FallaAsimetricaLineas calculaFallaAsimetricaLinea= new FallaAsimetricaLineas(zBarraSecuencia0, zBarraSecuencia1, zBarraSecuencia2, barras, conexiones, conexiones1, conexiongene, lineaFallada);
+		    		FallaAsimetricaLineas calculaFallaAsimetricaLinea= new FallaAsimetricaLineas(zBarraSecuencia0, zBarraSecuencia1, 
+		    				zBarraSecuencia2, barras, conexiones, conexiones1, conexiongene, lineaFallada);
 
 					angCorrientePuntoFallaFaseA= lineaFallada.getAngCorrientePuntoFallaFaseA();
 					angCorrientePuntoFallaFaseB= lineaFallada.getAngCorrientePuntoFallaFaseB();
 					angCorrientePuntoFallaFaseC= lineaFallada.getAngCorrientePuntoFallaFaseC();
+					
 					magCorrientePuntoFallaFaseA= lineaFallada.getMagcorrientePuntoFallaFaseA();
 					magCorrientePuntoFallaFaseB= lineaFallada.getMagcorrientePuntoFallaFaseB();
 					magCorrientePuntoFallaFaseC= lineaFallada.getMagcorrientePuntoFallaFaseC();
@@ -2086,10 +2386,13 @@ public class PSApplicaation extends Application {
 	    		
 	    		if(tipoElementoFallado.charAt(0)=='B') {
 	    			
-	    			FallaLineaALineaTierra biaTierra= new FallaLineaALineaTierra(zBarraSecuencia0, zBarraSecuencia1, zBarraSecuencia2, barras, conexiones, conexiones1, barraFallada, conexiongene);
+	    			FallaLineaALineaTierra biaTierra= new FallaLineaALineaTierra(zBarraSecuencia0, zBarraSecuencia1, zBarraSecuencia2,
+	    					barras, conexiones, conexiones1, barraFallada, conexiongene);
+	    			
 	    			angCorrientePuntoFallaFaseA=barraFallada.getAngCorrientePuntoFallaFaseA();
 					angCorrientePuntoFallaFaseB=barraFallada.getAngCorrientePuntoFallaFaseB();
 					angCorrientePuntoFallaFaseC=barraFallada.getAngCorrientePuntoFallaFaseC();
+					
 					magCorrientePuntoFallaFaseA=barraFallada.getMagcorrientePuntoFallaFaseA();
 					magCorrientePuntoFallaFaseB=barraFallada.getMagcorrientePuntoFallaFaseB();
 					magCorrientePuntoFallaFaseC=barraFallada.getMagcorrientePuntoFallaFaseC();
@@ -2100,11 +2403,13 @@ public class PSApplicaation extends Application {
 	    		else if(tipoElementoFallado.charAt(0)=='L') {
 	    			
 	    			
-	    			FallaLineaALineaTierraEnLinea bifasicaATierraEnLinea= new FallaLineaALineaTierraEnLinea(zBarraSecuencia0, zBarraSecuencia1, zBarraSecuencia2, barras, conexiones, conexiones1, conexiongene, lineaFallada);
+	    			FallaLineaALineaTierraEnLinea bifasicaATierraEnLinea= new FallaLineaALineaTierraEnLinea(zBarraSecuencia0, zBarraSecuencia1, 
+	    					zBarraSecuencia2, barras, conexiones, conexiones1, conexiongene, lineaFallada);
 	    			
 	    			angCorrientePuntoFallaFaseA= lineaFallada.getAngCorrientePuntoFallaFaseA();
 					angCorrientePuntoFallaFaseB= lineaFallada.getAngCorrientePuntoFallaFaseB();
 					angCorrientePuntoFallaFaseC= lineaFallada.getAngCorrientePuntoFallaFaseC();
+					
 					magCorrientePuntoFallaFaseA= lineaFallada.getMagcorrientePuntoFallaFaseA();
 					magCorrientePuntoFallaFaseB= lineaFallada.getMagcorrientePuntoFallaFaseB();
 					magCorrientePuntoFallaFaseC= lineaFallada.getMagcorrientePuntoFallaFaseC();
@@ -2148,14 +2453,14 @@ public class PSApplicaation extends Application {
 		
 		public void imprimirGrafo(List<List<Edges>> bordes,List<Barras> vertices) {
 			
-			
-			
+		
 			for(int i=0;i<vertices.size();i++) {
 				System.out.print("Barra "+vertices.get(i).getNombreBarra()+" : ");
 				for(int j=0;j<bordes.get(i).size();j++) {
 				
 					
-					System.out.print("(Barra "+bordes.get(i).get(j).getU()+" , "+" Barra "+bordes.get(i).get(j).getV()+" , "+((WeightEdeges)bordes.get(i).get(j)).getWeight()+" )");
+					System.out.print("(Barra "+bordes.get(i).get(j).getU()+" , "+" Barra "+
+					bordes.get(i).get(j).getV()+" , "+((WeightEdeges)bordes.get(i).get(j)).getWeight()+" )");
 					
 				}
 				System.out.println();
@@ -2185,6 +2490,7 @@ public class PSApplicaation extends Application {
 			List<Edges> edges = new ArrayList<>();
 		      
 		      for(int i=0;i<conexiones.size();i++) {
+		    	  
 		    	int x= barras.indexOf(conexiones.get(i).getBarra1());
 		    	 int y= barras.indexOf(conexiones.get(i).getBarra2());
 		    	 
@@ -2193,6 +2499,7 @@ public class PSApplicaation extends Application {
 		      }
 		      
 		      for(int i=0;i<conexiones1.size();i++) {
+		    	  
 		    	  int x= barras.indexOf(conexiones1.get(i).getBarra1());
 		    	 int y= barras.indexOf(conexiones1.get(i).getBarra2());
 		    	 

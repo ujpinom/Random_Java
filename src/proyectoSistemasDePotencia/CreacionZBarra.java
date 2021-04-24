@@ -20,7 +20,6 @@ public class CreacionZBarra {
 		this.barras=barras;
 		this.zBarra=zBarra;
 		this.elementoFallado=elementoFallado;
-		
 				
 	}
 	
@@ -45,6 +44,7 @@ public class CreacionZBarra {
 		int barra= Math.min(b1, b2);
 
 		double ZkkZb= zBarra[barra-1][barra-1]+elementoFallado.getimpedanciaLineaZ1()/2;
+		
 		matrizCambiante[matrizCambiante.length-1][matrizCambiante.length-1]=ZkkZb;
 		
 		
@@ -57,9 +57,7 @@ public class CreacionZBarra {
 		}
 		
 		return matrizCambiante;
-		
-		
-		
+			
 	}
 	
 
@@ -76,7 +74,6 @@ public class CreacionZBarra {
 		}
 		
 		
-		
 		int b1= barras.indexOf(elementoFallado.getBarra1());
 		int b2= barras.indexOf(elementoFallado.getBarra2());
 		
@@ -91,13 +88,10 @@ public class CreacionZBarra {
 			matrizCambiante[i][matrizCambiante.length-1]=zBarra[i][barra-1];
 			matrizCambiante[matrizCambiante.length-1][i]=zBarra[i][barra-1];
 			
-			
 		}
 		
 		return matrizCambiante;
-		
-		
-		
+			
 	}
 	
 	public double [][] inserccionABarraExistente2(double [][] zBarra) {
@@ -112,8 +106,7 @@ public class CreacionZBarra {
 			}
 		}
 		
-		
-		
+
 		int b1= barras.indexOf(elementoFallado.getBarra1());
 		int b2= barras.indexOf(elementoFallado.getBarra2());
 		
@@ -127,14 +120,12 @@ public class CreacionZBarra {
 			
 			matrizCambiante[i][matrizCambiante.length-1]=zBarra[i][barra-1];
 			matrizCambiante[matrizCambiante.length-1][i]=zBarra[i][barra-1];
-			
+	
 			
 		}
 		
 		return matrizCambiante;
-		
-		
-		
+	
 	}
 	
 	
@@ -158,6 +149,7 @@ public class CreacionZBarra {
 		int barra= Math.max(b1, b2);
 		
 		double zThevenin= zBarra[zBarra.length-1][zBarra.length-1]+zBarra[barra-1][barra-1]-2*zBarra[barra-1][zBarra.length-1];
+		
 		matrizCambiante[matrizCambiante.length-1][matrizCambiante.length-1]=zThevenin+elementoFallado.getimpedanciaLineaZ1()/2;
 		
 		
@@ -165,7 +157,6 @@ public class CreacionZBarra {
 			
 			matrizCambiante[i][matrizCambiante.length-1]=zBarra[i][barra-1]-zBarra[i][zBarra.length-1];
 			matrizCambiante[matrizCambiante.length-1][i]=zBarra[i][barra-1]-zBarra[i][zBarra.length-1];
-			
 			
 		}
 		
@@ -244,8 +235,6 @@ public class CreacionZBarra {
 	double [][] matrizReducida=reduccionKron(matrizCambiante);
 	
 	return matrizReducida;
-	
-	
 }
 	
 	
@@ -372,8 +361,7 @@ public class CreacionZBarra {
 		
 		return zBarraNueva;
 		
-		
-		
+	
 	}
 	
 	public void print(double [][] zBarra) {

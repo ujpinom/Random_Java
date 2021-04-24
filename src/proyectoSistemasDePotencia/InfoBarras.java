@@ -41,6 +41,7 @@ public class InfoBarras extends GridPane {
 	private TextField angulo=new TextField();
 	
 		public InfoBarras(Barras barra) {
+			
 			this.setAlignment(Pos.CENTER);
 			this.barra=barra;
 			infolinea.setText("VOLTAJE PRE-FALLA");
@@ -95,11 +96,11 @@ public class InfoBarras extends GridPane {
 			     stage.close();
 			});
 			
-			
 		}
 		
 		
 		public double getvoltajePrefalla() {
+			
 			return voltajePrefalla;
 		}
 		
@@ -112,17 +113,20 @@ public class InfoBarras extends GridPane {
 				char c= entrada.charAt(i);
 
 				if(!Character.isDigit(c)&& c!='.') {
+					
 					return true;
 				}
+				
 				else if(c=='.') {
+					
 					++contador;
 					continue;
 				}
 				
 				if (contador>1) {
+					
 					return true;
 				}
-				
 			}
 			
 			return false;
@@ -136,18 +140,18 @@ public class InfoBarras extends GridPane {
 				
 				
 				if(hori.isSelected()) {
+					
 					barra.setOrientacion("H");
 				}
 				
 				if(verti.isSelected()) {
+					
 					barra.setOrientacion("V");
 				}
 				
 			}
 			
 		}
-		
-	
 }
 
 

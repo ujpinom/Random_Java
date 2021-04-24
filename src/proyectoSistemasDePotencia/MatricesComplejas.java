@@ -8,9 +8,9 @@ public class MatricesComplejas implements Cloneable {
 	static Complejo[][] sumaMatricesComplejas(Complejo[][] m1,Complejo [][] m2) {
 		
 		
-		Complejo resultado [][] = new Complejo[m1.length][m1.length];
+		Complejo resultado [][] = new Complejo[m1.length][m1[0].length];
 		
-		if(m1.length==m2.length) {
+		if(m1.length==m2.length && m1[0].length==m2[0].length) {
 			
 			for(int i=0;i<m1.length;i++) {
 				for (int j=0;j<m1.length;j++) {
@@ -33,9 +33,9 @@ public class MatricesComplejas implements Cloneable {
 	static Complejo[][] restaMatricesComplejas(Complejo[][] m1,Complejo [][] m2){
 		
 		
-		Complejo resultado [][] = new Complejo[m1.length][m1.length];
+		Complejo resultado [][] = new Complejo[m1.length][m1[0].length];
 		
-		if(m1.length==m2.length) {
+		if(m1.length==m2.length && m1[0].length==m2[0].length) {
 			
 			for(int i=0;i<m1.length;i++) {
 				for (int j=0;j<m1.length;j++) {

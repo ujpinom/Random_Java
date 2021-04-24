@@ -37,8 +37,9 @@ public class infoBanco extends GridPane {
 	private Bancos banco;
 	
 	public infoBanco(Bancos banco) {
-		this.banco=banco;
 		
+		
+		this.banco=banco;
 		this.setPadding(new Insets(10));
 		this.setVgap(10);
 		this.getRowConstraints().add(new RowConstraints(50) );
@@ -64,9 +65,8 @@ public class infoBanco extends GridPane {
 			
 		});
 		
-		
-		
 		btncerrar.setOnAction(e->{
+			
 		     Stage stage = (Stage) this.btncerrar.getScene().getWindow();
 		     
 		     boolean vz2t= verificarEntrada(z2t.getText());
@@ -113,9 +113,6 @@ public class infoBanco extends GridPane {
 		return false;
 		
 	}
-	
-
-
 	
 	public void setOrientacion(int index) {
 		banco.setOrientacion(orientaciones[index]);

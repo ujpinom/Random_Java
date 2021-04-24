@@ -46,33 +46,45 @@ public class InfoTrafo extends GridPane {
 	private int indexConexionprimaria;
 	
 	public InfoTrafo(Transformador trafo) {
-		super();
-		String [] tipoConexiones= {"YN-"+trafo.getBarra1().getNombreBarra(),"YN-"+trafo.getBarra2().getNombreBarra(),"Y-"+trafo.getBarra1().getNombreBarra(),
-				"Y-"+trafo.getBarra2().getNombreBarra(),"DELTA-"+trafo.getBarra1().getNombreBarra(),"DELTA-"+trafo.getBarra2().getNombreBarra()};
-		items=FXCollections.observableArrayList(tipoConexiones);
-		this.tipoconexiones=tipoConexiones;
 		
+		super();
+		
+		String [] tipoConexiones= {"YN-"+trafo.getBarra1().getNombreBarra(),"YN-"+
+		trafo.getBarra2().getNombreBarra(),"Y-"+trafo.getBarra1().getNombreBarra(),
+				"Y-"+trafo.getBarra2().getNombreBarra(),"DELTA-"+trafo.getBarra1().getNombreBarra(),
+				"DELTA-"+trafo.getBarra2().getNombreBarra()};
+		
+		items=FXCollections.observableArrayList(tipoConexiones);
+		
+		this.tipoconexiones=tipoConexiones;
 		this.trafo = trafo;
 		this.setPadding(new Insets(10));
 		this.setVgap(10);
 		this.getRowConstraints().add(new RowConstraints(50) );
+		
 		cbo.setMaxWidth(250);
 		cbo1.setMaxWidth(250);
 		cbo.getItems().addAll(items);	
 		cbo1.getItems().addAll(items);
+		
 		hb.getChildren().add(infolinea);
 		hb.setAlignment(Pos.CENTER);
+		
 		hb1.setAlignment(Pos.CENTER_RIGHT);
 		hb1.getChildren().add(btncerrar);
+		
 		this.add(hb, 0, 0);
 		this.add(hb1, 0, 2);
+		
 		vb.getChildren().addAll(z1l,z1t,z2l,z2t,z0l,z0t,cprimaria,cbo,csecundaria,cbo1);
+		
 		this.add(vb,0 , 1);
+		
 		infolinea.setText("INFORMACIÓN DEL TRANSFORMADOR "+ trafo.getNombreLinea());
 		infolinea.setStroke(Color.RED);
+		
 		cbo.setOnAction(e->{
 			indexConexionprimaria=items.indexOf(cbo.getValue());
-			
 			
 			setConexionPrimaria(items.indexOf(cbo.getValue()));
 			
@@ -102,8 +114,10 @@ public class InfoTrafo extends GridPane {
 				
 				
 				InfoImpedanciaAterrizada infoimpedancia= new InfoImpedanciaAterrizada(trafo,"S");
+				
 				Scene dad= new Scene(infoimpedancia);
 				Stage sta= new Stage();
+				
 				sta.setScene(dad);
 				sta.setTitle("INFORMACIÓN IMPEDANCIA ATERRIZAMIENTO");
 				sta.setResizable(false);
@@ -144,8 +158,6 @@ public class InfoTrafo extends GridPane {
 		     
 		     stage.close();
 		});
-		
-		
 
 	}
 	
@@ -191,11 +203,6 @@ public class InfoTrafo extends GridPane {
 	public void setConexionSecundaria(int index) {
 		trafo.setConexionSecundaria(tipoconexiones[index]);
 	}
-	
-
-	
-	
-
 	
 
 }

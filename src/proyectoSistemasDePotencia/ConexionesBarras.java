@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 public class ConexionesBarras {
 	
-	
 	public static String [] establecerConexionesBarras(ArrayList<Transformador> trafo,ArrayList<Barras> barras) {
 		
 		String [] conexionesBarras=new String[barras.size()-1];
@@ -33,17 +32,13 @@ public class ConexionesBarras {
 				String xx=Character.toString(trafo.get(i).getConexionSecundaria().charAt(trafo.get(i).getConexionSecundaria().length()-1));
 				conexionesBarras[Integer.parseInt(xx)-1]="D";
 			}
-			
-			
 		}
 		
 		for(int i=0;i<conexionesBarras.length;i++) {
 			barras.get(i+1).setTipoConexionBarra(conexionesBarras[i]);
 		}
 		
-		
 		return conexionesBarras;
-		
 		
 	}
 

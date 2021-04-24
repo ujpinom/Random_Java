@@ -29,6 +29,7 @@ public class InfoImpendanciAterrizadaG extends GridPane{
 		
 		infolinea.setText("INGRESE EL VALOR DE LA IMPEDANCIA DE ATERRIZAMIENTO ( "+ generador.getNombreGenerador()+" )"+": ");
 		infolinea.setStroke(Color.RED);
+		
 		this.add(infolinea, 0, 0);
 		this.add(z1t, 0, 1);
 		this.add(btncerrar, 0, 2);

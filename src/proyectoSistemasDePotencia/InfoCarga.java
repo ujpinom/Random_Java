@@ -70,6 +70,7 @@ public class InfoCarga extends GridPane {
 		
 		
 		btncerrar.setOnAction(e->{
+			
 		     Stage stage = (Stage) this.btncerrar.getScene().getWindow();
 		     
 		     boolean vz1t= verificarEntrada(z1t.getText());
@@ -118,16 +119,10 @@ public class InfoCarga extends GridPane {
 		return false;
 		
 	}
-	
 
-
-	
 	public void setOrientacion(int index) {
 		carga.setOrientacion(orientaciones[index]);
 	}
-	
-	
-	
 	
 
 }

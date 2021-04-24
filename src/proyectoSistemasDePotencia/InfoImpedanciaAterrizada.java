@@ -20,21 +20,25 @@ public class InfoImpedanciaAterrizada extends GridPane {
 	
 	
 	public InfoImpedanciaAterrizada(Transformador trafo,String lado) {
+		
 		this.setPadding(new Insets(10));
 		this.setVgap(10);
 		this.getRowConstraints().add(new RowConstraints(50) );
 		
 		infolinea.setText("INGRESE EL VALOR DE LA IMPEDANCIA DE ATERRIZAMIENTO ( "+ trafo.getNombreLinea()+" )"+": ");
 		infolinea.setStroke(Color.RED);
+		
 		this.add(infolinea, 0, 0);
 		this.add(z1t, 0, 1);
 		this.add(btncerrar, 0, 2);
 		
 		
 		if(lado.equals("P")) {
+			
 			z1t.setText(""+trafo.getImpedanciaAterrizamientoPrimaria()/3);
 		}
 		else if(lado.equals("S")) {
+			
 			z1t.setText(""+trafo.getImpedanciaAterrizamientoSecundaria()/3);
 		}
 		
@@ -43,9 +47,7 @@ public class InfoImpedanciaAterrizada extends GridPane {
 		     Stage stage = (Stage) this.btncerrar.getScene().getWindow();
 		     
 		     boolean vz1t= verificarEntrada(z1t.getText());
-		 
-		     
-		     
+	
 		     if(z1t.getText().contains(",") ||vz1t ) {
 		    	 
 		    	 JOptionPane.showMessageDialog(null, "Ingrese datos de tipo númerico utilizando punto como separador decimal");
@@ -60,11 +62,10 @@ public class InfoImpedanciaAterrizada extends GridPane {
 		     stage.close();
 		});
 		
-		
-		
 	}
 	
 	public double getImpedanciaAterrizada() {
+		
 		return impedanciaAterrizada;
 	}
 	
@@ -77,21 +78,23 @@ public class InfoImpedanciaAterrizada extends GridPane {
 			char c= entrada.charAt(i);
 
 			if(!Character.isDigit(c)&& c!='.') {
+				
 				return true;
 			}
 			else if(c=='.') {
+				
 				++contador;
 				continue;
 			}
 			
 			if (contador>1) {
+				
 				return true;
 			}
 			
 		}
 		
 		return false;
-		
-	}
 
+	}
 }

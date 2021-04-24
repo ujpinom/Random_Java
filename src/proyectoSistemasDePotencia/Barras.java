@@ -4,8 +4,8 @@ import javafx.geometry.Point2D;
 
 public class Barras {
 	
-	private    double ancho=10;
-	private   double largo=70;
+	private  double ancho=10;
+	private  double largo=70;
 	static final double vprefalla=1.0;
 	private double vposfallaA=1;
 	private double vposfallaB=1;
@@ -120,7 +120,11 @@ public class Barras {
 		return orientacion;
 	}
 
-
+    /**
+     *Establece la orientación de la barra
+     *
+     * @param  orientacion String que representa la orientación
+     */
 	public void setOrientacion(String orientacion) {
 		this.orientacion = orientacion;
 	}

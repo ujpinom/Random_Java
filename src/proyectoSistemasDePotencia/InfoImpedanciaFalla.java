@@ -26,28 +26,32 @@ public class InfoImpedanciaFalla extends GridPane {
 
 	
 	public InfoImpedanciaFalla(String nombreElemento) {
+		
 		super();
+		
 		this.nombreElemento=nombreElemento;
 		this.setPadding(new Insets(10));
 		this.setVgap(10);
 		this.getRowConstraints().add(new RowConstraints(50) );
 		
-		infolinea.setText("IMPEDANCIA DE FALLA OCURRIDA SOBRE EL ELEMENTO "+nombreElemento+"\nNOTA: Si la falla ocurre sobre una línea, esta se calcula en la mitad de dicha línea. ");
+		infolinea.setText("IMPEDANCIA DE FALLA OCURRIDA SOBRE EL ELEMENTO "+nombreElemento+
+				"\nNOTA: Si la falla ocurre sobre una línea, esta se calcula en la mitad de dicha línea. ");
+		
 		infolinea.setStroke(Color.RED);
+		
 		this.add(infolinea, 0, 0);
 		this.add(z1l, 0, 1);
 		this.add(z1t, 0, 2);
 		this.add(btncerrar, 0, 3);
 		
 		z1t.setText(""+impedanciaFalla);
+		
 		btncerrar.setOnAction(e->{
 
 		     Stage stage = (Stage) this.btncerrar.getScene().getWindow();
 		     
 		     boolean vz1t= verificarEntrada(z1t.getText());
 		 
-		     
-		     
 		     if(z1t.getText().contains(",") ||vz1t ) {
 		    	 
 		    	 JOptionPane.showMessageDialog(null, "Ingrese datos de tipo númerico utilizando punto como separador decimal");

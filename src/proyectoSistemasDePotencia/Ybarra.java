@@ -5,8 +5,7 @@ public class Ybarra {
 	private double [][] YBarra;
 	private double [][] mAdyacente;
 	
-	
-	
+
 	public Ybarra(double [][] mAdyacente) {
 		
 		this.mAdyacente=mAdyacente;
@@ -15,8 +14,7 @@ public class Ybarra {
 		
 	}
 	
-	
-	
+
 	public void crearYBarra() {
 		
 		double resultado [][]=new  double [mAdyacente.length-1][mAdyacente.length-1];
@@ -46,11 +44,7 @@ public class Ybarra {
 		
 		
 		crearYBarra(resultado);
-		
-		
 
-		
-		
 	}
 	
 	
@@ -65,8 +59,7 @@ public class Ybarra {
 				if(j!=i && resultado[i][j]!=0) {
 					
 					resultado[i][i]+= resultado[i][j];
-					
-					
+
 				}
 				
 			}
@@ -118,9 +111,7 @@ public class Ybarra {
 		}
 		
 		
-		
 	}
-	
 	
 	
 }

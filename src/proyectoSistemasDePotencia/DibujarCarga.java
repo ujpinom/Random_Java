@@ -15,7 +15,6 @@ public class DibujarCarga {
 	static Line lineacarga;
 	
 	
-	
 	static List<Node> dibujarCargaBanco(Object objecto,String tipo){
 
 		
@@ -28,10 +27,7 @@ public class DibujarCarga {
 				Bancos banco=((Bancos)objecto);
 				return dibujarBanco(banco);
 			}
-		
-		
-		
-		
+
 	}
 	
 	
@@ -66,6 +62,7 @@ public class DibujarCarga {
 		}
 		
 		else if(banco.getOrientacion().equals(Bancos.RIGHT)) {
+			
 			double x1=banco.getBarra().getCoordenadasBanco().getX();
 			double y1=banco.getBarra().getCoordenadasBanco().getY();
 			double x2=banco.getBarra().getCoordenadasBanco().getX()+50;
@@ -77,6 +74,7 @@ public class DibujarCarga {
 			
 			double xMedio=(x1+x2)/2;
 			double yMedio=(y1+y2)/2;
+			
 			banco.setPuntoMedio(new Point2D(xMedio,yMedio));
 			
 			Circle c1= new Circle();
@@ -84,14 +82,17 @@ public class DibujarCarga {
 			c1.setCenterX(x1);
 			c1.setCenterY(y1);
 			c1.setFill(Color.RED);
+			
 			Line line=new Line(lineacarga.getEndX(),lineacarga.getEndY()+10,lineacarga.getEndX(),lineacarga.getEndY()-10);
 			line.setStrokeWidth(4);
 			lineacarga.setStrokeWidth(4);
+			
 			lineas.add(line);lineas.add(lineacarga);lineas.add(c1);
 		}
 		
 		
 		else if(banco.getOrientacion().equals(Bancos.ABAJO)) {
+			
 			double x1=banco.getBarra().getCoordenadasBanco().getX();
 			double y1=banco.getBarra().getCoordenadasBanco().getY();
 			double x2=banco.getBarra().getCoordenadasBanco().getX();
@@ -110,12 +111,14 @@ public class DibujarCarga {
 			c1.setCenterX(x1);
 			c1.setCenterY(y1);
 			c1.setFill(Color.RED);
+			
 			Line line=new Line(x2-10,y2,x2+10,y2);
 			line.setStrokeWidth(4);
 			lineacarga.setStrokeWidth(4);
 			lineas.add(line);lineas.add(lineacarga);lineas.add(c1);
 		}
 		else if(banco.getOrientacion().equals(Bancos.ARRIBA)) {
+			
 			double x1=banco.getBarra().getCoordenadasBanco().getX();
 			double y1=banco.getBarra().getCoordenadasBanco().getY();
 			double x2=banco.getBarra().getCoordenadasBanco().getX();
@@ -134,15 +137,14 @@ public class DibujarCarga {
 			c1.setCenterX(x1);
 			c1.setCenterY(y1);
 			c1.setFill(Color.RED);
+			
 			Line line=new Line(x2-10,y2,x2+10,y2);
 			line.setStrokeWidth(4);
 			lineacarga.setStrokeWidth(4);
 			lineas.add(line);lineas.add(lineacarga);lineas.add(c1);
 		}
 		
-	/////Hola perro
-		
-		
+
 		return lineas;
 		
 	}
@@ -152,6 +154,7 @@ public class DibujarCarga {
 		List<Node> lineas=new ArrayList<Node>();
 		
 		if(banco.getOrientacion().equals(Carga.RIGHT)) {
+			
 			double x1=banco.getBarra().getCoordenadasCarga().getX();
 			double y1=banco.getBarra().getCoordenadasCarga().getY();
 			double x2=banco.getBarra().getCoordenadasCarga().getX()+50;
@@ -196,6 +199,7 @@ public class DibujarCarga {
 		
 		
 		else if(banco.getOrientacion().equals(Carga.ABAJO)) {
+			
 			double x1=banco.getBarra().getCoordenadasCarga().getX();
 			double y1=banco.getBarra().getCoordenadasCarga().getY();
 			double x2=banco.getBarra().getCoordenadasCarga().getX();
@@ -239,6 +243,7 @@ public class DibujarCarga {
 		}
 		
 		else if(banco.getOrientacion().equals(Carga.ARRIBA)) {
+			
 			double x1=banco.getBarra().getCoordenadasCarga().getX();
 			double y1=banco.getBarra().getCoordenadasCarga().getY();
 			double x2=banco.getBarra().getCoordenadasCarga().getX();
@@ -283,6 +288,7 @@ public class DibujarCarga {
 		}
 		
 		else if(banco.getOrientacion().equals(Carga.LEFT)) {
+			
 			double x1=banco.getBarra().getCoordenadasCarga().getX();
 			double y1=banco.getBarra().getCoordenadasCarga().getY();
 			double x2=banco.getBarra().getCoordenadasCarga().getX()-50;
@@ -338,7 +344,9 @@ public class DibujarCarga {
 			
 			
 			Text nombreC = null;
+			
 			if(banco.getOrientacion().equals(Carga.RIGHT)) {
+				
 			nombreC= new Text(banco.getNombreCarga());
 			nombreC.setFill(Color.BLACK);
 			nombreC.setX(lineacarga.getEndX()+5);
@@ -346,7 +354,9 @@ public class DibujarCarga {
 			
 		
 			}
+			
 			else if(banco.getOrientacion().equals(Carga.LEFT)) {
+				
 				nombreC= new Text(banco.getNombreCarga());
 				nombreC.setFill(Color.BLACK);
 				nombreC.setX(lineacarga.getEndX()-15);
@@ -355,6 +365,7 @@ public class DibujarCarga {
 			}
 			
 			else if(banco.getOrientacion().equals(Carga.ABAJO)) {
+				
 				nombreC= new Text(banco.getNombreCarga());
 				nombreC.setFill(Color.BLACK);
 				nombreC.setX(lineacarga.getEndX());
@@ -362,6 +373,7 @@ public class DibujarCarga {
 			}
 			
 			else if(banco.getOrientacion().equals(Carga.ARRIBA)) {
+				
 				nombreC= new Text(banco.getNombreCarga());
 				nombreC.setFill(Color.BLACK);
 				nombreC.setX(lineacarga.getEndX()-2);
@@ -377,7 +389,9 @@ public class DibujarCarga {
 			Bancos banco=((Bancos)objecto);
 			
 			Text nombreC = null;
+			
 			if(banco.getOrientacion().equals(Carga.RIGHT)) {
+				
 			nombreC= new Text(banco.getNombreCarga());
 			nombreC.setFill(Color.BLACK);
 			nombreC.setX(lineacarga.getEndX()+5);
@@ -385,7 +399,9 @@ public class DibujarCarga {
 			
 		
 			}
+			
 			else if(banco.getOrientacion().equals(Carga.LEFT)) {
+				
 				nombreC= new Text(banco.getNombreCarga());
 				nombreC.setFill(Color.BLACK);
 				nombreC.setX(lineacarga.getEndX()-30);
@@ -394,6 +410,7 @@ public class DibujarCarga {
 			}
 			
 			else if(banco.getOrientacion().equals(Carga.ABAJO)) {
+				
 				nombreC= new Text(banco.getNombreCarga());
 				nombreC.setFill(Color.BLACK);
 				nombreC.setX(lineacarga.getEndX());
@@ -401,6 +418,7 @@ public class DibujarCarga {
 			}
 			
 			else if(banco.getOrientacion().equals(Carga.ARRIBA)) {
+				
 				nombreC= new Text(banco.getNombreCarga());
 				nombreC.setFill(Color.BLACK);
 				nombreC.setX(lineacarga.getEndX()-2);
@@ -408,9 +426,7 @@ public class DibujarCarga {
 			}
 			
 			return nombreC;
-			
-			
-			
+
 		}
 		
 	}

@@ -71,17 +71,22 @@ public class InfoGeneradores extends GridPane {
 		z0t.setText(""+ generador.getImpedanciaZ0());
 	
 		cbo.setOnAction(e->{
+			
 			setConexionPrimaria(items.indexOf(cbo.getValue()));
+			
 			if(cbo.getValue().equals("Y-ATERRIZADO")) {
 				
 				InfoImpendanciAterrizadaG infoimpedancia = new InfoImpendanciAterrizadaG(generador);
+				
 				Scene dad= new Scene(infoimpedancia);
 				Stage sta= new Stage();
+				
 				sta.setScene(dad);
 				sta.setTitle("INFORMACIÓN IMPEDANCIA ATERRIZAMIENTO");
 				sta.setResizable(false);
 				sta.initModality(Modality.APPLICATION_MODAL);
 				sta.showAndWait();
+				
 				impedanciaAterrizamiento=infoimpedancia.getImpedanciaAterrizada();
 			}
 		});
@@ -91,10 +96,9 @@ public class InfoGeneradores extends GridPane {
 			setOrientacion(hor.indexOf(cbo1.getValue()));
 			
 		});
-		
-		
-		
+			
 		btncerrar.setOnAction(e->{
+			
 		     Stage stage = (Stage) this.btncerrar.getScene().getWindow();
 		     
 		     boolean vz1t= verificarEntrada(z1t.getText());
@@ -128,14 +132,17 @@ public class InfoGeneradores extends GridPane {
 			char c= entrada.charAt(i);
 
 			if(!Character.isDigit(c) && c!='.') {
+				
 				return true;
 			}
 			else if(c=='.') {
+				
 				++contador;
 				continue;
 			}
 			
 			if (contador>1) {
+				
 				return true;
 			}
 			
@@ -158,6 +165,5 @@ public class InfoGeneradores extends GridPane {
 	public void setOrientacion(int index) {
 		generador.setOrientacion(orientaciones[index]);
 	}
-	
 	
 }
